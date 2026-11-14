@@ -1,0 +1,6 @@
+{
+  "appId": "com.civillabacademy.app",
+  "appName": "Civil Lab Academy",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}
