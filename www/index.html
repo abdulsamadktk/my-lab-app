@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Civil Lab Academy — 93 Test Procedures</title>
+<style>
+  :root{--bg:#f4f6f9;--card:#fff;--text:#182230;--muted:#5a6778;--border:#dfe4ec;--primary:#14497a;--pl:#e8f1fa;--accent:#d98218;--warn-bg:#fff8e6;--warn-bd:#f0c36d;--ok:#157f4b;--sh:0 2px 10px rgba(16,28,46,.06)}
+  [data-theme="dark"]{--bg:#0f1520;--card:#17202e;--text:#e6ecf5;--muted:#98a6b8;--border:#273347;--primary:#5aa3e8;--pl:#1c2f47;--accent:#f0a442;--warn-bg:#2a2212;--warn-bd:#7a5b22;--ok:#38b878;--sh:0 2px 12px rgba(0,0,0,.35)}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.48}
+  header{position:sticky;top:0;z-index:50;background:var(--card);border-bottom:1px solid var(--border);padding:9px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;box-shadow:var(--sh)}
+  .brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1.02rem;color:var(--primary);cursor:pointer}
+  .badge{font-size:.72rem;background:var(--pl);color:var(--primary);padding:2px 8px;border-radius:99px;font-weight:600}
+  .sw{flex:1;min-width:190px;max-width:420px;position:relative}
+  .sw input{width:100%;padding:7px 28px 7px 10px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-size:.9rem}
+  .sc{position:absolute;right:7px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;display:none}
+  .tools{display:flex;align-items:center;gap:7px;margin-left:auto;flex-wrap:wrap}
+  .btn{border:1px solid var(--border);background:var(--card);color:var(--text);padding:5px 10px;border-radius:7px;cursor:pointer;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+  .btn:hover{border-color:var(--primary);color:var(--primary)}
+  .btn.pri{background:var(--primary);color:#fff;border-color:var(--primary)}
+  .tpill{display:inline-flex;align-items:center;gap:5px;background:var(--pl);color:var(--primary);padding:4px 9px;border-radius:8px;font-size:.82rem;font-weight:700;font-variant-numeric:tabular-nums}
+  .tpill button{border:none;background:var(--card);color:var(--text);border-radius:4px;padding:2px 6px;cursor:pointer;font-size:.73rem;font-weight:600}
+  .layout{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 54px)}
+  aside{background:var(--card);border-right:1px solid var(--border);padding:12px;overflow-y:auto;max-height:calc(100vh - 54px);position:sticky;top:54px}
+  .pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+  .pill{font-size:.74rem;padding:4px 8px;border-radius:99px;border:1px solid var(--border);background:var(--bg);color:var(--text);cursor:pointer;font-weight:600}
+  .pill.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+  .subsel{width:100%;padding:6px 8px;border-radius:7px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.81rem;margin-bottom:8px}
+  .tlist{display:flex;flex-direction:column;gap:4px}
+  .titem{padding:7px 9px;border-radius:8px;border:1px solid transparent;cursor:pointer;display:flex;gap:8px;align-items:flex-start}
+  .titem:hover{background:var(--bg);border-color:var(--border)}
+  .titem.active{background:var(--pl);border-color:var(--primary)}
+  .tnum{min-width:25px;height:21px;border-radius:5px;background:var(--bg);border:1px solid var(--border);font-size:.73rem;font-weight:700;display:flex;align-items:center;justify-content:center;color:var(--primary)}
+  .titem.active .tnum{background:var(--primary);color:#fff;border-color:var(--primary)}
+  .tmeta{flex:1;min-width:0}
+  .ttitle{font-size:.84rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tstd{font-size:.71rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  main{padding:18px 24px;max-width:1040px;width:100%;margin:0 auto}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:16px 18px;margin-bottom:14px;box-shadow:var(--sh)}
+  .bc{font-size:.79rem;color:var(--muted);margin-bottom:4px}
+  h1.title{margin:0 0 8px;font-size:1.42rem}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+  .stag{background:var(--pl);color:var(--primary);padding:3px 9px;border-radius:6px;font-size:.79rem;font-weight:700}
+  .tabs{display:flex;gap:4px;border-bottom:1px solid var(--border);margin-bottom:14px;flex-wrap:wrap}
+  .tab{padding:7px 13px;border:none;background:none;color:var(--muted);font-weight:600;font-size:.86rem;cursor:pointer;border-bottom:2px solid transparent}
+  .tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+  .sbox{background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:10px;text-align:center;margin-bottom:12px}
+  .sbox svg{max-width:340px;width:100%;height:auto}
+  .sh{font-size:.94rem;font-weight:700;color:var(--primary);margin:12px 0 6px;display:flex;justify-content:space-between;align-items:center}
+  .clist{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px}
+  .clist li{display:flex;align-items:flex-start;gap:8px;font-size:.9rem;padding:4px 7px;border-radius:6px}
+  .clist li:hover{background:var(--bg)}
+  .clist input{margin-top:4px;width:15px;height:15px;accent-color:var(--primary);cursor:pointer}
+  .clist li.done span{text-decoration:line-through;color:var(--muted)}
+  .pbar{height:7px;background:var(--bg);border-radius:99px;overflow:hidden;border:1px solid var(--border);margin-bottom:8px}
+  .pfill{height:100%;background:var(--ok);width:0%;transition:width .2s}
+  .wbox{background:var(--warn-bg);border:1px solid var(--warn-bd);border-radius:8px;padding:10px 13px}
+  .wbox ul{margin:0;padding-left:18px}
+  .wbox li{margin-bottom:4px;font-size:.88rem}
+  .ccard{border:1px solid var(--border);border-radius:9px;padding:12px;margin-bottom:10px;background:var(--bg)}
+  .fcode{font-family:ui-monospace,Menlo,monospace;background:var(--card);border:1px solid var(--border);padding:7px 9px;border-radius:6px;font-size:.85rem;margin:6px 0 9px;overflow-x:auto}
+  .cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:8px}
+  .fld label{display:block;font-size:.76rem;color:var(--muted);font-weight:600;margin-bottom:2px}
+  .fld input,.fld textarea{width:100%;padding:6px 8px;border:1px solid var(--border);border-radius:6px;background:var(--card);color:var(--text);font-size:.86rem}
+  .cres{margin-top:9px;padding:8px 11px;border-radius:7px;background:var(--pl);color:var(--primary);font-weight:700;font-size:.92rem}
+  .dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-bottom:14px}
+  .scard{background:var(--card);border:1px solid var(--border);border-radius:9px;padding:12px;cursor:pointer}
+  .scard:hover{border-color:var(--primary)}
+  .sval{font-size:1.45rem;font-weight:800;color:var(--primary)}
+  .slbl{font-size:.8rem;color:var(--muted);font-weight:600}
+  .disc{font-size:.76rem;color:var(--muted);border-top:1px solid var(--border);padding-top:9px;margin-top:14px}
+  .ptbl{width:100%;border-collapse:collapse;font-size:.82rem;margin:8px 0;background:var(--card)}
+  .ptbl th,.ptbl td{border:1px solid var(--border);padding:5px 7px;text-align:right}
+  .ptbl th{background:var(--pl);color:var(--primary);font-weight:700}
+  .ptbl td:first-child,.ptbl th:first-child{text-align:left}
+  .ptbl input{width:78px;padding:3px 5px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);text-align:right;font-size:.82rem}
+  .chartbox{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px;margin-top:10px}
+  .chartbox svg{width:100%;max-width:640px;height:auto;display:block;margin:0 auto}
+  .mbtn{display:none}
+  @media(max-width:840px){
+    .layout{grid-template-columns:1fr}
+    aside{display:none;position:fixed;left:0;top:54px;bottom:0;width:85%;max-width:320px;z-index:60;box-shadow:4px 0 20px rgba(0,0,0,.25)}
+    aside.open{display:block}
+    .mbtn{display:inline-flex}
+    main{padding:12px}
+  }
+  @media print{header,aside,.tabs,.np{display:none!important}.layout{display:block}main{max-width:100%;padding:0}.card{box-shadow:none;border:1px solid #ccc}}
+</style>
+</head>
+<body>
+<header>
+  <button class="btn mbtn" onclick="toggleSB()">☰ Tests (93)</button>
+  <div class="brand" onclick="showHome()"><span>Civil Lab Academy</span><span class="badge">93 Tests</span></div>
+  <div class="sw"><input id="q" type="text" placeholder="Search #, name, AASHTO / ASTM / BS / APHA / ISO..." oninput="onSearch()" /><button id="qc" class="sc" onclick="clrSearch()">✕</button></div>
+  <div class="tools">
+    <div class="tpill">⏱ <span id="td">00:00</span><button onclick="togTimer()" id="tb">Start</button><button onclick="rstTimer()">Reset</button></div>
+    <button class="btn" onclick="showSaved()">📋 Saved (<span id="scnt">0</span>)</button>
+    <button class="btn" onclick="togTheme()" id="thb">🌙 Dark</button>
+  </div>
+</header>
+<div class="layout">
+  <aside id="sb">
+    <div class="pills" id="cpills"></div>
+    <select class="subsel" id="ssel" onchange="rList()"></select>
+    <div style="font-size:.76rem;color:var(--muted);margin-bottom:5px;display:flex;justify-content:space-between">
+      <span id="lcnt">93 tests</span>
+      <label style="cursor:pointer"><input type="checkbox" id="fonly" onchange="rList()"/> Favorites</label>
+    </div>
+    <div class="tlist" id="tlist"></div>
+  </aside>
+  <main id="main"></main>
+</div>
+
+<script>
+const CATS=["Civil Engineering Materials","Field Testing","Geotechnical & Rock","Chemistry","Environmental Monitoring"];
+const SUBS=["Fine & Coarse Aggregate","Steel Bar","Hardened Concrete","Asphalt","Masonry Units","In-Situ Testing","NDT Testing","Soil Index & Classification","Compaction","Strength & Deformation","Thermal & Electrical","Rock Testing","Aggregate & Soil Chemistry","Water Testing","Air Monitoring","Noise Monitoring"];
+
+const RAW=[
+[1,"Particle size distribution",0,0,"AASHTO T 27 · ASTM C136","Determines aggregate grading curve controlling packing, paste/bitumen demand and workability.","Balance (0.1%)|Woven sieves M 92/E11, lid & pan|Mechanical shaker|Oven 110±5°C|Splitter/quartering|Brushes|Trays","Split/quarter sample (T 2/T 248); min ~300 g fine.|Oven-dry to constant mass & cool.","Weigh dry sample M.|Stack sieves coarsest-top to pan-bottom.|Pour onto top sieve, cover (no overload).|Shake ~10 min (≤1%/min passes).|Weigh retained per sieve; brush underside.|Weigh pan.|Total must be within 0.3% of M (else repeat).|Compute % retained/% passing & plot semi-log curve.","%ret=(M_i/M)×100 | %pass=100−cum%ret | FM=Σ(cum%ret 150µm–9.5mm)/100","Standard & ID|Sieves|Mass retained & % passing|Curve vs spec|Fineness modulus|Date, operator, deviations","Don't push grains through mesh.|Avoid overloaded sieves.|Check torn/stretched mesh.|Wear dust mask for dry fines.","psd","sieve"],
+[2,"Fines content",0,0,"AASHTO T 11 · ASTM C117","Measures material <75 µm (silt/clay) by washing, which raises water demand & weakens bond.","Balance (0.1%)|75 µm + 1.18 mm guard sieve|Wash container|Spray nozzle|Oven 110±5°C|Drying pans","Split representative sample.|Oven-dry at 110±5°C, cool & weigh to 0.1%.","Record dry mass B.|Cover with water (wetting agent only if allowed).|Stir well to suspend fines.|Pour muddy water over nested 1.18 mm & 75 µm sieves.|Repeat clean water stir/pour until clear.|Wash residue gently until <75 µm passes.|Return all retained to pan, drain, dry at 110±5°C.|Cool & weigh washed dry mass C.","A(%)=((B−C)/B)×100","Standard & ID|Masses B & C|% <75 µm to 0.1%|Wetting agent used|Date, operator, deviations","Don't splash coarse grains over rim.|Avoid hard jets damaging mesh.|Dry to constant mass.|Higher than dry sieving (removes clay coatings).","loss_bc","wash"],
+[3,"Particle density & water absorption",0,0,"AASHTO T 85 / T 84 · ASTM C127 / C128","Finds specific gravity and water absorption of coarse & fine aggregate for volumetric mix design.","Balance (0.5 g, suspended)|Wire basket & 23±2°C tank|500 mL pycnometer & thermometer|SSD cone & tamper|Cloth|Oven 110±5°C","Coarse: wash, dry, soak 24±4 h.|Fine (~1 kg): soak 24±4 h, bring to SSD via cone test, use 500 g.","Coarse: towel-roll to SSD.|Weigh SSD in air B.|Weigh submerged in 23±2°C water C.|Oven-dry, cool, weigh A.|Fine: add 500 g SSD (S) + water to pycnometer.|Roll/shake 15–20 min to de-air.|Adjust 23±2°C to mark, weigh C.|Oven-dry sample, weigh A.|Fill clean pycnometer to mark, weigh B.","Coarse: Gsb=A/(B−C); Gsa=A/(A−C); Abs%=((B−A)/A)×100 | Fine: Gsb=A/(B+S−C) | ρ=Gs×ρ_w","Standard|Bulk OD, SSD & Apparent Gs|Absorption (0.1%)|Water temp|Date, operator, deviations","SSD state is largest error source.|Take full time de-airing.|Keep water temp steady.|Label coarse vs fine method.","sg_agg","pyc"],
+[4,"Aggregate crushing value",0,0,"BS 812-110","Measures resistance to gradual compressive crushing; lower ACV = stronger aggregate.","150 mm steel cylinder, base & plunger|400 kN press|Tamping rod|Cylindrical measure|2.36, 10, 14 mm sieves|Balance (1 g)|Oven 105–110°C","Take 14–10 mm fraction, oven-dry & cool.|Fill measure in 3 layers (25 tamps each) & weigh.","Fill cylinder in 3 layers (25 tamps each).|Level & fit plunger squarely.|Centre under press platen.|Load uniformly to 400 kN in 10 min; release.|Sieve entire sample on 2.36 mm.|Weigh passing 2.36 mm (M2) & test mass (M1).|Repeat on second sample.","ACV(%)=(M2/M1)×100","Standard|Type, source & fraction|M1 & M2|Individual & mean ACV (whole #)|Date, operator, deviations","Plunger must sit square.|Stay clear during loading.|Compare with project spec.|Two tests must agree closely.","pct_m2m1","press"],
+[5,"Aggregate impact value",0,0,"BS 812-112","Measures resistance to sudden impact; lower AIV = tougher aggregate.","Impact machine (13.5–14 kg hammer, cup)|Balance (1 g)|Tamping rod|Measure|2.36, 10, 14 mm sieves|Oven 105–110°C","Take 14–10 mm fraction, dry & cool.|Fix test mass from 3-layer tamped measure.","Fix base on solid level floor.|Fill cup in 3 layers (25 tamps each).|Centre cup under hammer.|Drop hammer freely from 380 mm height.|Give 15 blows (≥1 s apart).|Sieve on 2.36 mm; weigh passing M2 & sample M1.|Repeat on second sample.","AIV(%)=(M2/M1)×100","Standard|Type, source & fraction|M1 & M2|Each & mean AIV (whole #)|Date, operator, deviations","Keep hands clear.|Verify 380 mm drop height.|Prevent hammer bounce double-hit.|Confirm with duplicate.","pct_m2m1","impact"],
+[6,"10% fines value",0,0,"BS 812-111","Finds load (kN) producing 10% fines (<2.36 mm) for softer/porous rock. Higher load = stronger.","ACV cylinder/plunger|≥400 kN press|Tamping rod & measure|2.36, 10, 14 mm sieves|Balance & oven|Water tank (if soaked)","Prepare 14–10 mm dry or 24-h soaked.|Fill cylinder in 3 layers (25 tamps each) & weigh M1.","Pick force expecting 7.5–12.5% fines.|Fill cylinder, fit plunger.|Load uniformly to target force in 10 min.|Sieve on 2.36 mm & weigh M2.|Repeat at 2nd force bracketing 10% fines.|Compute 10% fines force.","Fines%=(M2/M1)×100 | F=14×x/(y+4)","Standard|Type & condition (dry/soaked)|Forces & % fines|Force for 10% fines (nearest 10 kN)|Date, operator, deviations","Bracket 7.5–12.5% fines.|Keep 10 min load time.|Stay clear.|State dry or soaked.","ten_fines","press"],
+[7,"Flakiness index",0,0,"BS 812-105.1 · ASTM D4791","Measures % by mass of flat thin particles using a slotted thickness gauge.","Thickness gauge|Sieves 63,50,37.5,28,20,14,10,6.3 mm|Balance (0.1%)|Trays|Oven","Split & dry coarse aggregate ensuring enough grains in largest fraction.","Sieve into fractions; ignore <5% mass fractions.|Sum tested fractions (M1).|Use slot = 0.6 × mean sieve size.|Pass particles edge-on by hand.|Weigh passing flaky particles; sum as M2.","slot=0.6×(up+low)/2 | FI(%)=(M2/M1)×100","Standard (note BS≠ASTM)|ID & fractions|Fraction & flaky masses|FI (whole #)|Date, operator, deviations","Use exact slot.|Present edge-on, don't force.|Must be dry & clean.|Report BS separate from ASTM D4791.","pct_m2m1","gauge"],
+[8,"Elongation index",0,0,"BS 812-105.2 · ASTM D4791","Measures % by mass of long thin particles using a pin length gauge.","Pin length gauge|Sieves 63–10 mm|Balance (0.1%)|Trays","Use dried split sample from FI test; ignore <5% fractions.","Sum tested fractions (M1).|Set pins to 1.8 × mean sieve size.|Try passing particles lengthwise between pins.|Set aside retained elongated particles.|Weigh & sum as M2.","opening=1.8×(up+low)/2 | EI(%)=(M2/M1)×100","Standard|ID & fractions|Fraction & retained masses|EI (whole #)|Date, operator, deviations","Particle can be both flaky & elongated.|Check pin setting.|Align longest axis with gap.|Don't combine FI & EI unless asked.","pct_m2m1","gauge"],
+[9,"Shape index",0,0,"BS EN 933-4","Finds % of non-cubical particles whose length exceeds 3× their thickness.","Slide caliper (L & E)|Test sieves|Balance (0.1%)|Trays & splitter","Dry coarse aggregate, split to test mass, sieve to narrow fractions.","Weigh dry portion M1.|Discard outside-range fractions.|Measure max length L & min thickness E per particle.|Set aside particles with L > 3E.|Weigh non-cubical particles as M2.","SI(%)=(M2/M1)×100 (L>3E)","Standard|ID & fractions|Total & non-cubical masses|SI (whole #)|Date, operator, deviations","Check caliper on reference block.|Measure smallest thickness.|Use standard sample mass.|Not interchangeable with FI.","pct_m2m1","gauge"],
+[10,"LA abrasion",0,0,"AASHTO T 96 · ASTM C131 / C535","Measures aggregate wear & impact loss when tumbled with steel balls in the Los Angeles drum.","LA drum (30–33 rpm)|Steel balls (12/11/8/6 for A–D)|1.70 mm sieve|Balance (1 g)|Oven 110±5°C|Splitter","Wash & dry at 110±5°C.|Recombine into grading A, B, C or D (~5000 g).","Weigh original mass.|Load sample + balls; bolt lid tight.|Run 500 rev at 30–33 rpm.|Remove balls; sieve on 1.70 mm.|Wash retained 1.70 mm, dry to constant mass & weigh.","LA(%)=((orig−final_1.70)/orig)×100","Standard|Source & grading|Balls & revolutions|LA loss (whole #)|Date, operator, deviations","Match grading & ball count.|Bolt lid tight.|Stay clear of running drum.|Compare with spec limit.","la_loss","la"],
+[11,"Sodium/magnesium sulphate soundness",0,0,"AASHTO T 104 · ASTM C88","Assesses weathering/freeze-thaw durability via repeated saturated sulphate soak and oven-dry cycles.","Wire baskets|Containers|Saturated Na2SO4 or MgSO4|Hydrometer|Sieves|Oven 110±5°C|Balance","Wash, dry, sieve fractions & weigh.|Cool solution to 21±1°C at standard density.","Weigh each fraction in basket.|Soak 16–18 h at 21±1°C.|Drain 15 min.|Oven-dry at 110±5°C & cool.|Repeat 5 cycles.|Wash sulphate-free (BaCl2 check), dry, sieve on original sieve & weigh.","Loss%=((orig−fin)/orig)×100 | Weighted=Σ(loss%×%grad)/100","Standard|Salt & cycles|Fraction & weighted loss|Cracking/flaking notes|Date, operator, deviations","Hold 21±1°C.|No basket contact.|Wear PPE for irritant salts.|Use heat gloves.","la_loss","soundness"],
+[12,"Shell content",0,0,"BS EN 933-7","Determines % of weak shell fragments in coarse marine aggregate.","Balance (0.1%)|4 mm sieve|Oven 110±5°C|Tweezers & trays|Splitter|Bright light & magnifier","Split coarse sample; dry at 110±5°C & cool.","Weigh dry portion M1.|Sieve on 4 mm; keep retained.|Spread small batches under bright light.|Hand-pick whole & broken shells.|Weigh shells as M2.","SC(%)=(M2/M1)×100","Standard|ID & portion size|Shell & portion masses|Shell % (0.1%)|Date, operator, deviations","Define shell fragments beforehand.|Sort small amounts.|Use bright light.|Note whole vs broken shells.","pct_m2m1","bal_oven"],
+[13,"Bulk density & voids",0,0,"AASHTO T 19 · ASTM C29","Finds unit weight and void % of aggregate for mass-volume mix conversions.","Calibrated cylindrical measure|16 mm tamping rod|Strike-off bar|Scoop|Balance (0.05 kg)|Oven & glass plate","Dry aggregate & cool.|Calibrate measure volume V with water.","Weigh empty measure T.|Rodded: fill in 3 thirds, tamp 25× each, strike flush, weigh G.|Loose: shovel from ≤50 mm height, strike flush, weigh G.|Repeat on 2nd sample.","M=(G−T)/V | Voids%=((S×W−M)/(S×W))×100","Standard|Type, size & condition|Method (rodded/jigged/loose)|Bulk density (10 kg/m³) & voids %|Date, operator, deviations","Don't shake measure.|Don't hit bottom hard.|Use consistent method.|Use standard measure size.","bulk_voids","measure"],
+[14,"Clay lumps & friable particles",0,0,"AASHTO T 112 · ASTM C142","Finds weak particles that crumble in mixes and cause concrete pop-outs.","Balance (0.1%)|Residue sieves|Soaking pans|Gentle spray|Oven 110±5°C","Split fractions (~25 g fine >1.18 mm) & dry at 110±5°C.","Weigh fraction W.|Cover thinly with distilled water; soak 24±4 h.|Squeeze particles between thumb & forefinger.|Wet-sieve broken fines off.|Dry retained residue at 110±5°C & weigh R.","P(%)=((W−R)/W)×100 | P_tot=Σ(P%×%grad)/100","Standard|ID & fractions|% per fraction & total|Date, operator, deviations","Consistent finger pressure.|No hard jet.|Use distilled water.|Dry to constant mass.","clay_lumps","wash"],
+[15,"Tensile test",0,1,"ASTM A370 · AASHTO T 244","Pulls rebar to fracture to measure yield strength, tensile strength and % elongation.","Universal testing machine & grips|Extensometer/dividers & punch|Balance|Rule & caliper|Hacksaw","Cut full-section specimen (don't machine/hammer).|Find area from short piece mass & 7850 kg/m³.|Mark 200 mm gauge length.","Measure area A.|Mark gauge divisions.|Clamp bar straight in grips.|Fit extensometer.|Load steadily.|Log yield P_y & max P_max.|Join broken ends & measure L_f.","f_y=P_y/A | f_u=P_max/A | Elong%=((L_f−L_0)/L_0)×100","Standard|Size, grade & heat #|Area, f_y, f_u & elongation|f_u/f_y ratio|Date, operator, deviations","Wear eye PPE.|Keep bar aligned (no bending).|Break outside gauge invalidates elongation.|Compare with spec grade.","tensile","utm"],
+[16,"Bend test",0,1,"ASTM A370 · AASHTO T 244","Checks rebar ductility by bending around a mandrel and inspecting for cracks.","Bend rig w/ rollers & former|Mandrel set|Caliper|Protractor|5x–10x lens|Cutter & wire brush","Cut straight full-section bar; never heat or hammer beforehand.|Tag size, grade & lot.","Look up mandrel D_m & angle.|Set mandrel & roller spacing.|Centre bar under former.|Bend slowly to target angle (often 180°).|Inspect outside of bend for cracks/splits.|Record Pass or Fail.","R=D_m/d | α_meas ≥ α_req","Standard|Size, grade & lot|Mandrel D_m & angle|Crack observation & Pass/Fail|Date, operator, deviations","Use exact mandrel size.|Bend slowly.|Keep hands clear.|Control swinging ends.","bend","bend"],
+[17,"Compressive strength (cube/cylinder)",0,2,"AASHTO T 22 · ASTM C39 · BS EN 12390-3","Crushes concrete cubes/cylinders (7/28 d) to verify characteristic compressive strength.","Compression press w/ rate control|Clean flat platens|150 mm cube / 150×300 mm cyl moulds|Curing tank (23±2 / 20±2°C)|Caliper|Capping|Balance","Cure until test age; keep damp.|Check dimensions; cap rough cylinder ends.","Wipe grit & surface water.|Measure dims & area A.|Centre on lower platen (cubes on cast sides).|Seat upper platen.|Load steadily (~0.25 MPa/s C39; 0.6 BS EN).|Note max load P & fracture mode.","f_c=P/A (MPa) | Cyl A=π×d²/4","Standard|ID, shape, size, age & curing|Mass, dims & max load|Individual & mean f_c|Fracture type|Date, operator, deviations","Don't mix cube & cylinder values.|Use safety guard & goggles.|Ensure plane capped ends.|Hold steady load rate.","strength_pa","press"],
+[18,"Density",0,2,"ASTM C642 · BS EN 12390-7","Determines oven-dry and saturated unit mass of hardened concrete.","Suspended balance (0.1%)|Water tank & wire|Oven 105±5°C|Soaking tub|Cloth|Boiler|Thermometer|Desiccator","Use ≥350 cm³ crack-free, rebar-free concrete.","Weigh as-received if needed.|Dry 100–110°C ≥24 h to constant mass A.|Immerse ~21°C ≥48 h; wipe & weigh SSD B.|If boiled: boil 5 h, cool ≥14 h, wipe & weigh C.|Weigh suspended in water D.","ρ_d=A/(C−D)×ρ_w | ρ_s=B/(C−D)×ρ_w","Standard|ID, type & source|Masses A,B,C,D|Density (nearest 10 kg/m³)|Condition|Date, operator, deviations","Match spec moisture state.|Use tongs/gloves.|Wipe consistently.|No trapped air under specimen.","conc_dens","pyc"],
+[19,"Rapid chloride permeability",0,2,"AASHTO T 277 · ASTM C1202","Applies 60 V DC across a concrete disc for 6 h to measure charge passed (coulombs) vs chloride ingress.","Test cells & clamps|60 V DC supply + ammeter|Vacuum desiccator & pump|Diamond saw|3% NaCl (-) & 0.3 N NaOH (+)|De-aired water|Sealant & thermometer","Cut 100×50 mm disc.|Seal sides & cure.|Vacuum 3 h dry, add de-aerated water, vacuum 1 h, soak ~18 h.","Blot surface water.|Clamp leak-free; fill (-) NaCl, (+) NaOH.|Apply 60 V DC.|Log current at 0 min & every 30 min for 6 h.|Log solution temps.|Stop at 6 h, rinse, compute Q.","Q=900×(I_0+2I_30+…+2I_330+I_360)","Standard|ID, age & curing|Diameter & thickness|Currents & temps|Coulombs & class|Date, operator, deviations","Compare with spec.|Ensure leak-free seal.|NaOH is corrosive (PPE).|Don't touch live 60 V terminals.","rcpt","rcpt"],
+[20,"Initial surface absorption",0,2,"BS 1881-208","Measures water absorption rate at concrete surface under 200 mm head.","Cap (≥5000 mm²)|200 mm head reservoir|Graduated capillary tube|Sealant & clamps|Stopwatch|20°C water & thermometer","Condition lab units by oven drying/cooling; on site pick flat clean crack-free zone.","Seal cap leak-free.|Fill cap & reservoir to 200 mm head.|Purge air bubbles.|Close supply tap.|Start timer; log capillary flow rate at 10 min, 30 min & 1 h.|Log water temp.","ISA=V/(A×t) (ml/m²/s)","Standard|ID, age & location|Conditioning|Water temp & cap area|ISA @ 10m, 30m, 1h|Date, operator, deviations","Prevent cap edge leaks.|Keep surface conditioning identical.|Purge all air bubbles.|Compare with spec.","isa","isa"],
+[21,"Water absorption",0,2,"ASTM C642","Measures cold immersion absorption, boiled absorption and permeable void % of concrete.","Balance (0.1%)|Oven 100–110°C|Water tank|Cloth|Boiling vessel|Suspended basket|Desiccator","Use ≥350 cm³ crack-free, steel-free specimen.","Dry 100–110°C ≥24 h to constant mass A.|Immerse ~21°C ≥48 h; wipe & weigh SSD B.|Boil 5 h, cool ≥14 h, wipe & weigh C.|Weigh suspended in water D.","Abs_i=((B−A)/A)×100 | Abs_b=((C−A)/A)×100 | V=((C−A)/(C−D))×100","Standard|ID, source & size|Masses A,B,C,D|Abs_i, Abs_b & voids %|Times|Date, operator, deviations","Wipe consistently.|Care with boiling water.|Dry to constant mass.|Compare with limits.","conc_abs","pyc"],
+[22,"Thickness of bituminous layers",0,3,"ASTM D3549","Measures compacted asphalt pavement core thickness vs design thickness and tolerances.","Water-cooled diamond core rig (100/150 mm)|Caliper/rule (1 mm)|Extractor & crayon|Straightedge, hammer, chisel|Tray|Patch mix","Avoid cracked spots; drill full depth, label location/chainage & shade-dry flat.","Clean water/dust off core.|Split bonded layers if needed.|Measure height at ≥4 evenly spaced points to 1 mm.|Average readings & compare with design.","T=(t_1+…+t_n)/n | Dev(%)=((T−T_d)/T_d)×100","Standard|Project, road, chainage & offset|Core dia & date|Individual & mean thickness|Design & diff|Operator, date, deviations","Note damaged cores.|Wear eye/ear PPE.|Anchor rig firmly.|Patch core holes.","thick_dev","gauge"],
+[23,"Marshall density",0,3,"AASHTO T 166 · ASTM D2726","Finds bulk specific gravity G_mb and density of compacted asphalt briquettes or cores.","Suspended balance (0.1 g)|25±1°C bath|Basket/stirrup|Damp cloth|Thermometer|Oven","Cool clean briquette (~101.6×63.5 mm) or core to room temp; use SSD only if abs <2%.","Weigh dry in air A.|Immerse at 25°C for 3–5 min.|Weigh in water C.|Remove, blot quickly with damp cloth, weigh SSD B.|Switch to sealed method if abs >2%.","G_mb=A/(B−C) | ρ=G_mb×997 | Va=(1−G_mb/G_mm)×100","Standard|ID, mix & bitumen %|Masses A,B,C & temp|G_mb (3 dec) & density|Air voids|Date, operator, deviations","Blot lightly.|Weigh promptly.|Hold 25°C.|Reject deformed cores.","marshall_dens","pyc"],
+[24,"Marshall stability & flow",0,3,"AASHTO T 245 · ASTM D6927","Measures peak stability and flow of compacted asphalt at 60°C.","Marshall hammer (4.54 kg, 457 mm)|101.6 mm moulds|Press (50.8 mm/min)|Breaking head & flow meter|60±1°C bath|Oven, thermometers|Extruder, caliper, balance","Compact heated batches (35/50/75 blows/face), cool, extrude, log height & G_mb.","Immerse in 60°C bath 30–40 min.|Clean & lube guide rods.|Place specimen in breaking head, zero gauges.|Load at 50.8 mm/min to peak & drop (within 30 s of bath).|Apply height correction C_f.","S=S_m×C_f | MQ=S/F","Standard|Mix, bitumen % & blows|Height & density|Measured/corr stability, flow & MQ|Temp|Date, operator, deviations","Wear gloves at 60°C bath.|Finish within 30 s.|Keep guide rods clean.|Compare with spec.","marshall_stab","press"],
+[25,"Bitumen content",0,3,"AASHTO T 164 / T 308 · ASTM D2172 / D6307","Finds asphalt binder % by ignition furnace or solvent extraction.","Ignition furnace w/ balance OR centrifuge extractor|Baskets & pan|Balance (0.1 g)|Oven|Heat gloves|Solvent/filters|Correction C_f","Split loose mix (or warm/break cores); dry if moist.","Ignition: calibrate C_f; weigh basket + mix W_1.|Burn at ~538°C until loss ≤0.01% over 3 min.|Cool & weigh aggregate W_2.|Extraction: dissolve in solvent, spin, filter fines, weigh dry aggregate W_a.","Ign: Pb=((W_1−W_2)/W_1)×100−C_f | Ext: Pb=((W_1−W_a)/W_1)×100","Standard & method|Mix, source & ID|Masses before/after|C_f|Binder % (0.1%)|Date, operator, deviations","Keep furnace closed; wear heat PPE.|Use fume hood for solvent.|Hot basket stays hot long.|Check JMF tolerances.","bitumen","extractor"],
+[26,"Particle size distribution (asphalt)",0,3,"AASHTO T 30 · ASTM D5444","Sieve grading of aggregate recovered from asphalt after bitumen ignition/extraction.","Sieves (25–0.075 mm)|Shaker|Balance (0.1 g)|Oven 110±5°C|Brushes & trays|Wash gear|Pan & lid","Use cool clump-free recovered dry aggregate.","Weigh dry mass M.|Wash over 0.075 mm if required & dry.|Stack sieves & shake ~10 min.|Weigh each sieve M_i.|Check total within 0.3% of M; plot curve.","R_i=(M_i/M)×100 | P_i=100−ΣR | Loss=((M−ΣM_i)/M)×100","Standard|Mix, ID & source|Dry mass|Mass retained & % passing|Curve vs JMF|Date, operator, deviations","Don't overload sieves.|Don't force mesh.|Apply ignition aggregate correction if needed.|Check spec limits.","psd","sieve"],
+[27,"Compressive strength (masonry unit)",0,4,"ASTM C67 · ASTM C140","Crushes bricks/blocks to verify minimum masonry compressive strength.","Calibrated press|Steel bearing plates (1 spherical)|Plywood/plaster capping|Caliper & rule|Oven 100–115°C|Balance|Wire brush","Select ≥5 crack-free units; measure dims & condition per standard.","Measure bearing L×W (1 mm) for gross area A.|Cap faces flat & parallel.|Centre flat-wise in service orientation.|Apply half load at any rate, rest over 1–2 min.|Log max load P & failure mode.","f=P/A (MPa) | f_avg=(f_1+…+f_n)/n","Standard (C67/C140)|Type, size & source|Condition|Dims, load & strength|Average|Date, operator, deviations","Load service face.|Wear safety glasses.|Use flat clean caps.|Compare with spec grade.","strength_pa","press"],
+[28,"Water absorption (masonry unit)",0,4,"ASTM C67 · ASTM C140","Measures 24-h cold & 5-h boiling absorption and saturation coefficient of bricks/blocks.","Balance (0.5%)|Oven 100–115°C|15.5–30°C bath|Boiler|Cloth|Thermometer|Basket","Dry units (e.g. 5 bricks) at 100–115°C ≥24 h to ≤0.2% 2-h change; cool.","Weigh dry W_d.|Soak 24 h at 15.5–30°C; wipe & weigh within 5 min (W_24).|Boil 5 h, cool to room temp, wipe & weigh (W_5).|Compute absorptions & C/B.","A_24=((W_24−W_d)/W_d)×100 | A_5=((W_5−W_d)/W_d)×100 | C/B=(W_24−W_d)/(W_5−W_d)","Standard|Type, source & ID|Dry & sat masses|Absorptions & C/B|Times & temp|Date, operator, deviations","Wipe consistently.|Dry completely beforehand.|Care with boiling water.|Compare with spec.","masonry_abs","pyc"],
+[29,"Field density (sand replacement)",1,5,"AASHTO T 191 · ASTM D1556","Measures in-place dry density & % compaction of fill/subgrade/subbase using calibrated sand.","Sand cone cylinder w/ valve|Base plate|Uniform dry calibrated sand (600–300 µm)|Balance (1 g)|Pick, chisel, spoon|Moisture cans, brush|Airtight bags|Oven 110±5°C","Calibrate ρ_sand & cone mass M_c.|Fill & weigh cylinder M_1.|Select level spot.","Seat base plate firmly.|Dig vertical-sided hole through plate to full layer depth.|Weigh excavated soil M_s immediately in airtight container.|Invert cylinder on plate, open valve to fill hole/cone, close when flow stops.|Weigh remaining sand M_2.|Oven-dry soil sample for w.","M_h=M_1−M_2−M_c | V=M_h/ρ_sand | ρ_wet=M_s/V | ρ_d=ρ_wet/(1+w/100) | Comp%=(ρ_d/MDD)×100","Standard & project|Location, chainage, layer & level|Calibration values|ρ_wet, w & ρ_d|MDD & % compaction|Date, operator, deviations","No vibration/traffic nearby.|Never reuse wet/dirty sand.|Weigh soil promptly.|Use larger hole/plate in gravel.","sand_cone","sand_cone"],
+[30,"Field density (core cutter)",1,5,"BS 1377-9 · ASTM D2937","Measures field density of cohesive soils by driving a steel cutter cylinder.","Sharp steel cutter (~100×130 mm)|Dolly|Rammer|Balance (0.1 g)|Knife & straightedge|Spade|Moisture cans & oven|Caliper","Compute cutter volume V & empty mass M_1.|Level & clean test surface.","Place cutter + dolly on soil.|Drive vertically until dolly top nears ground.|Dig out cutter carefully.|Trim both ends flush; clean outside; weigh M_2.|Sample core for oven moisture w.","ρ=(M_2−M_1)/V | ρ_d=ρ/(1+w/100) | Comp%=(ρ_d/MDD)×100","Standard|Location, chainage, layer & depth|Cutter dims & V|ρ_wet, w & ρ_d|% compaction|Date, operator, deviations","Keep cutting edge sharp.|Drive straight vertically.|Not for gravel/hard crusts/loose dry sand.|Weigh promptly or seal.","core_cutter","core_cutter"],
+[31,"In-situ CBR",1,5,"ASTM D4429 · BS 1377-9","Measures field penetration resistance of subgrade/subbase against a loaded reaction truck.","Jack|Reaction truck/frame|50 mm plunger + rods|Calibrated proving ring/cell|0.01 mm dial gauges + beam|Surcharges|Level, spade, cans|Oven & balance","Level & clean test surface; check truck reaction weight & jack stroke.","Position truck jack over point.|Place surcharges if needed; seat plunger (~4 kPa) & zero gauges.|Penetrate at ~1.25 mm/min.|Log load at 0.5, 1, 1.5, 2, 2.5, 5, 7.5, 10, 12.5 mm.|Sample adjacent soil for w (and density).|Plot & correct curve; compute CBR.","CBR_2.5=(P_2.5/13.2)×100 | CBR_5.0=(P_5.0/20.0)×100","Standard|Location, chainage, layer & depth|Field w & density|Curve|Reported CBR (2.5 or 5.0 mm)|Date, operator, deviations","Ensure truck/jack stability.|Stand clear while loading.|Note moisture & recent rain.|Compare with spec.","cbr_field","press"],
+[32,"Mackintosh probe",1,5,"Reference to be confirmed","Light dynamic cone probe giving relative blow counts vs depth to locate soft layers & firm strata.","4.5 kg sliding hammer|Anvil|1 m rods & couplings|27 mm cone tip|Extraction handle|150 mm rod marks|Notebook & stopwatch","Plan grid of points; clear loose topsoil/debris.","Assemble cone, rod, anvil & guide.|Hold vertical; drop 4.5 kg hammer 300 mm freely.|Count blows per 150 mm (N_150).|Add rods keeping plumb to target depth/refusal.|Extract & plot N_150 vs depth.","N_150 = blows/150 mm | N_total = ΣN_i","Method & project ref|Hammer, drop & cone size|Location, date, operator|Blows/150 mm plot|Depth & stop reason|Water table & deviations","Keep rod vertical.|Rotate rods occasionally to cut skin friction.|Wear gloves.|Confirm correlation & method in project spec.","mackintosh","impact"],
+[33,"Coring (strength/asphalt/opening)",1,5,"AASHTO T 24 · ASTM C42","Drills concrete/asphalt cores for compressive strength, thickness, density or inspection.","Anchored core drill|Diamond bit (≥3× max agg; 75/100 mm)|Water feed|Rebar locator|Marker, tape, ruler|Core bags|Caliper|Repair grout","Locate away from rebar/joints/high stress using cover meter; prepare labels.","Anchor rig firmly; align bit plumb.|Start water & drill steadily.|Extract core carefully; mark top/bottom & orientation.|Measure L & D; log defects, rebar & photo.|Seal in bag; patch hole.","L/D = L/D | f = P/A (apply L/D correction)","Standard|Location, member, direction & date|Dims, condition & rebar|Reason & visual log|Strength/thickness results|Operator & deviations","Use eye/ear/RCD electrical PPE.|Never drill rebar.|Don't twist/bend core.|Control wet/dry storage before test.","strength_pa","core_cutter"],
+[34,"Rebound hammer",1,6,"ASTM C805 · BS EN 12504-2","Non-destructive surface hardness test to check concrete uniformity (does not replace crushing).","Schmidt rebound hammer|Steel test anvil|Carborundum stone|Marker & grid|Datasheet","Pick ≥150 mm sound area away from edges; grind smooth & dust off.","Verify hammer on anvil.|Hold perpendicular (or log angle); press slowly to impact.|Take ≥10 readings ≥25 mm apart (never same spot).|Reject outliers; compute mean/median.|Apply angle correction C_a.|Estimate strength only from mix calibration curve.","R_mean=ΣR_i/n | R_c=R_mean+C_a","Standard|Member, location & date|Hammer ID & anvil check|Angle & surface state|Individual & mean/median readings|Estimated strength & deviations","Carbonation, texture & moisture affect R.|Never accept strength on rebound alone.|Keep plunger clean.|Use eye PPE overhead.","rebound","rebound"],
+[35,"Moisture content",2,7,"AASHTO T 265 · ASTM D2216","Determines soil water content as % of dry mass by oven drying.","Oven 110±5°C|Balance (0.01 g)|Lidded cans|Spatula|Desiccator|Tongs/gloves","Take representative mass (20–50 g fines; more for gravel) & seal in can.","Weigh empty can + lid M_c.|Add moist soil, weigh with lid M_1.|Dry lid-off at 110±5°C to constant mass (~12–16 h).|Replace lid, cool, weigh M_2.","M_w=M_1−M_2 | w(%)=(M_w/(M_2−M_c))×100","Standard|ID, location & depth|Masses & oven temp|Drying time|Water content (0.1%)|Date, operator, deviations","Dry gypsum/organic soil at ~60°C if needed.|Use tongs.|Never weigh warm cans.|Seal promptly.","moisture","bal_oven"],
+[36,"Bulk and dry density",2,7,"ASTM D7263 · BS 1377-2","Finds wet density, dry density and unit weight of undisturbed/compacted soil.","Balance (0.01 g)|Caliper (0.1 mm)|Knife & wire saw|Sample ring|Containers & oven 110±5°C|Straightedge|Wax (if irregular)","Keep sealed; trim cylinder/ring flush or wax-coat lump.","Weigh empty ring.|Trim flush & weigh wet soil M.|Measure D & H at multiple spots for V.|Get moisture w (or dry whole sample for M_d).|Compute ρ, ρ_d & γ.","ρ=M/V | ρ_d=M_d/V=ρ/(1+w/100) | γ=ρ×9.81","Standard|ID, depth & description|Dims & V|Wet & dry mass|ρ, ρ_d & w|Date, operator, volume method, deviations","Handle soft soils gently.|Measure multiple points.|Keep sealed until weighing.|Cut away from hand.","soil_dens","gauge"],
+[37,"Particle density / specific gravity",2,7,"AASHTO T 100 · ASTM D854","Measures specific gravity G_s of soil solids (<4.75 mm) with a pycnometer.","250/500 mL pycnometer|Balance (0.01 g)|Vacuum pump or hot plate|Thermometer (0.1°C)|Water bath|De-aired distilled water|Oven & dish|4.75 mm sieve","Take 25–60 g oven-dry soil <4.75 mm (kerosene if saline/organic).","Calibrate clean flask + water M_2.|Add dry soil M_s.|Add 2/3 distilled water; de-air by vacuum or gentle boil & cool.|Fill to mark, dry outside, weigh M_3 & log temp.|Re-verify M_2 at same temp; run duplicate.","G_t=M_s/(M_s+M_2−M_3) | G_20=K×G_t","Standard|ID & depth|Flask # & calibration|Temp & masses|G_s @ 20°C (2–3 dec)|Date, operator, deviations","De-air thoroughly.|Keep temp steady.|Use shield when boiling/vacuuming.|Dry flask outside at room temp.","gs_soil","pyc"],
+[38,"Atterberg limits (LL, PL, PI)",2,7,"AASHTO T 89 / T 90 · ASTM D4318","Finds Liquid Limit, Plastic Limit & Plasticity Index of fine soil (<425 µm).","Casagrande cup & grooving tool|Glass mixing & ground rolling plate|Spatulas, 425 µm sieve|Balance (0.01 g)|Cans & oven 110±5°C|Distilled water","Take 150–200 g <425 µm soil; mix with distilled water & cure.","Check 10 mm cup drop.|Cut groove in ~10 mm paste; crank 2 rev/s until 13 mm closes.|Log blows (15–35) & moisture across trials; read LL @ 25 blows.|PL: roll 3.2 mm threads until crumbling; oven-dry 2 trials.","LL=w @ 25 blows | PL=(M_w/M_d)×100 | PI=LL−PL","Standard|ID, depth & prep|Blows & moistures|LL, PL, PI (whole #)|Classification|Date, operator, deviations","Add water slowly.|Check 10 mm drop & tool wear.|Don't over-press PL threads.|Report non-plastic as NP.","atterberg","gauge"],
+[39,"Linear shrinkage",2,7,"BS 1377-2","Measures linear shrinkage % of a soil bar dried from near liquid limit.","140 mm brass semicircular trough|425 µm sieve|Palette knife & glass plate|Grease|Oven 105–110°C|Caliper (0.1 mm)|Balance","Mix ~150 g <425 µm soil with distilled water to near LL.","Lightly grease trough.|Fill avoiding air pockets; strike flush.|Air-dry slowly until shrinking from walls.|Oven-dry at 105–110°C & cool.|Measure dry bar L_d & mould L_0.","LS(%)=(1−L_d/L_0)×100","Standard|ID, depth & description|L_0 & L_d|Cracking/curling notes|LS (%)|Date, operator, deviations","Air-dry slowly first.|Measure along centre line.|Use tongs for hot trough.|Compare with spec.","lin_shrink","gauge"],
+[40,"Particle size distribution (coarse-grained)",2,7,"AASHTO T 27 · ASTM D6913","Sieve grading (75 mm–75 µm) of gravelly & sandy soils.","Sieves 75 mm–75 µm + pan|Shaker|Balance (0.1%)|Oven 110±5°C|Brushes & trays|Splitter|Wash gear","Riffle/quarter to min mass; oven-dry & weigh M.","Wash over 75 µm if fines present, dry & weigh.|Stack sieves & shake ~10 min.|Weigh each sieve & pan (sum within 1% of M).|Plot curve & find Cu, Cc.","R_i=(m_i/M)×100 | P_i=100−ΣR | Cu=D_60/D_10 | Cc=D_30²/(D_10×D_60)","Standard|ID, source & date|Dry & sieve masses|% passing & curve|Cu, Cc & class|Operator & deviations","Don't overload sieves.|Never force openings.|Wear dust mask.|Inspect mesh regularly.","psd_soil","sieve"],
+[41,"Particle size distribution (fine-grained)",2,7,"AASHTO T 88 · ASTM D7928","Hydrometer sedimentation analysis of silt & clay (<75 µm) using Stokes law.","ASTM 152H hydrometer|1000 mL cylinder|Sodium hexametaphosphate (40 g/L)|Stirrer|0.5°C thermometer|Balance (0.01 g)|Stopwatch|Water bath, 75 µm sieve, oven","Take ~50 g (sandy) or ~100 g (clay); soak in dispersant ≥16 h.","Stir ~1 min; wash into cylinder & fill to 1000 mL.|Shake 1 min & start timer.|Read meniscus & temp at 2, 5, 15, 30, 60, 250, 1440 min.|Run dispersant control cylinder.|Wash on 75 µm sieve for sand mass; plot full curve.","P=(R_c×a/M_d)×100 | D=K×sqrt(L/t)","Standard|ID & depth|Dispersant & G_s|Readings, temps & corr|Curve & % sand/silt/clay|Date, operator, deviations","Keep temp steady.|Insert hydrometer gently.|Use specified dispersant only.|Handle glass carefully.","hydrometer","pyc"],
+[42,"Dispersion test (double hydrometer)",2,7,"ASTM D4221","Compares <5 µm fines in non-dispersed vs dispersed suspensions to identify dispersive clays.","Two 1000 mL cylinders|152H hydrometer & thermometer|Sodium hexametaphosphate|Distilled water|Stirrer|Balance (0.01 g)|Stopwatch|Oven","Prepare two ~50 g specimens at natural moisture (do not dry).","Run dispersed cylinder (with chemical + stirrer).|Run non-dispersed cylinder (distilled water only, gentle shake).|Log hydrometer & temp up to ~8 h.|Compute ratio of % <5 µm.","Dispersion%=(P_nd/P_d)×100","Standard|ID, location & depth|G_s & moisture|Readings & corr|% dispersion & class|Date, operator, deviations","Distilled water only.|Never dry sample first.|Confirm with pinhole/crumb/chemical tests.|Handle glass gently.","disp_pct","pyc"],
+[92,"Standard Proctor compaction (MDD and OMC)",2,8,"AASHTO T 99 · ASTM D698","Finds MDD and OMC using ~600 kN·m/m³ effort (3 layers, 2.5 kg rammer, 305 mm drop).","101.6 or 152.4 mm mould w/ collar|2.5 kg rammer (305 mm drop)|Straightedge & balance (1 g)|4.75/9.5/19 mm sieves, tray|Cylinder/spray|Cans, oven, extruder|Graph","Dry ≤60°C, sieve per method, prepare 4–5 cured ~2.5–3 kg portions stepping water 1–2%.","Weigh mould M_m.|Compact 3 layers × 25 (4-in) or 56 (6-in) blows.|Trim flush & weigh M_ms.|Sample centre for oven moisture w.|Repeat 4–5 points past peak; plot ρ_d vs w (+ ZAV).","w=(M_w/M_d)×100 | ρ=(M_ms−M_m)/V | ρ_d=ρ/(1+w/100) | ρ_zav=G_s×ρ_w/(1+w×G_s/100)","Standard, method & mould|Description & fraction|Energy details|Point table & curve|MDD (0.01) & OMC (0.1%) + oversize corr|Date, operator, deviations","Use fresh cured portions.|Keep rammer vertical & full drop.|Sample moisture from core centre.|Add wet points past peak.","proctor","impact"],
+[93,"Modified Proctor compaction (MDD and OMC)",2,8,"AASHTO T 180 · ASTM D1557","Finds MDD and OMC for road base/subgrade using ~2700 kN·m/m³ effort (5 layers, 4.54 kg, 457 mm drop).","101.6 or 152.4 mm mould w/ collar|4.54 kg rammer (457 mm drop)|Straightedge & balance (1 g)|4.75/9.5/19 mm sieves, tray|Cylinder/spray|Cans, oven, extruder|Graph","Dry ≤60°C, sieve per method, prepare 4–5 cured portions stepping water 1–2%.","Weigh mould M_m.|Compact 5 layers × 25 (4-in) or 56 (6-in) blows.|Trim flush & weigh M_ms.|Sample centre for oven moisture w.|Repeat past peak; plot ρ_d vs w (+ ZAV).","w=(M_w/M_d)×100 | ρ=(M_ms−M_m)/V | ρ_d=ρ/(1+w/100) | ρ_zav=G_s×ρ_w/(1+w×G_s/100)","Standard, method & mould|Description & fraction|Energy details|Point table & curve|MDD (0.01) & OMC (0.1%) + oversize corr|Date, operator, deviations","Use fresh cured portions.|Full 457 mm vertical drop.|Centre moisture sample.|Modified yields higher MDD & lower OMC than Standard.","proctor","impact"],
+[43,"Unconfined compressive strength (UCT)",2,9,"AASHTO T 208 · ASTM D2166","Measures unconfined compressive strength q_u and c_u = q_u/2 of saturated cohesive clay.","Load frame|Proving ring/load cell|0.01 mm gauge/LVDT|Trimmer, extruder, wire saw|Split mould|Caliper & balance|Oven & tins|Stopwatch","Trim cylinder H/D = 2–2.5 (D ≥30 mm & ≥10× max grain); measure H, D, mass.","Centre on lower platen; contact upper platen; zero gauges.|Load at 0.5–2%/min strain to peak or 15% strain.|Sketch failure mode & angle; get post-test w.|Remould at same w & density if sensitivity needed.","e=dL/L_0 | A=A_0/(1−e) | q=P/A | c_u=q_u/2 | S_t=q_u(und)/q_u(rem)","Standard & ID|Dims, mass, w & ρ_d|Type & strain rate|Curve, q_u & strain|c_u, S_t & failure mode|Date, operator, deviations","Saturated cohesive soils only.|Trim flat parallel ends.|Keep damp during prep.|Stop press before handling.","uct","press"],
+[44,"Unconsolidated undrained triaxial (UU)",2,9,"AASHTO T 296 · ASTM D2850","Measures total-stress undrained shear strength c_u under confining pressure without drainage.","Triaxial cell|Strain frame|Cell pressure supply|Load & 0.01 mm gauges|Membranes & O-rings|Porous stones|Trimmer, caliper, balance|Oven","Prepare 3 cylinders (38/50 mm, H/D 2–2.5) for 3 cell pressures.","Seal in membrane with O-rings; close drainage valves.|Fill cell with de-aired water; apply cell pressure s3.|Zero gauges; shear at ~1%/min to peak or 15% strain.|Release pressure, sketch failure, measure final w.","A=A_0/(1−e) | (s1−s3)=P/A | c_u=(s1−s3)_max/2","Standard & ID|Size, w, ρ_d & saturation|Cell pressures & rate|Curves & peak deviator|Mohr circles & c_u|Failure mode, date, operator, deviations","Check membrane pinholes.|Hold cell pressure steady.|Release pressure before opening.|φ_u > 0 means unsaturated.","uu_triax","triax"],
+[45,"Consolidated undrained triaxial (CU)",2,9,"AASHTO T 297 · ASTM D4767","Measures total & effective parameters (c', φ') by consolidating then shearing undrained with pore pressure u.","Triaxial cell w/ pore transducer|Slow frame|Cell & back pressure controllers|Volume gauge|Load & LVDT|Membranes, O-rings, stones, filter strips|De-aired water|Trimmer, balance, oven","Prepare ≥3 cylinders (38/50 mm, H/D ≈ 2) for different effective stresses.","Mount with saturated stones & filter strips.|Step cell & back pressure until Skempton B ≥ 0.95.|Consolidate to target effective stress; pick slow shear rate.|Close drainage; shear logging load, strain & u to peak/15%.|Measure final w & plot total/effective Mohr circles.","(s1−s3)=P/A | s1'=s1−u | s3'=s3−u | B=du/ds3","Standard & ID|Size, w & density|Back pressure, B & consol stress|Stress-strain & u curves|c', φ', c_cu, φ_cu|Rate, date, operator, deviations","Keep effective stress low during saturation.|Don't shear too fast.|De-air all lines.|Release pressure slowly.","cu_triax","triax"],
+[46,"Consolidated drained triaxial (CD)",2,9,"ASTM D7181","Shears consolidated specimen slowly with open drainage for direct effective parameters c', φ' and volume change.","Triaxial cell & very-slow frame|Cell & back pressure systems|Volume gauge|Pore transducer|Load & LVDT|Membranes, stones, strips|Prep tools, balance, oven","Prepare ≥3 cylinders (38–100 mm, H/D ≈ 2) for different effective stresses.","Mount & saturate until B ≥ 0.95.|Consolidate with drainage open; calculate slow drained shear rate.|Shear with drainage open logging load, strain, dV & base u.|Run to peak/15%; measure final w; plot effective Mohr circles.","(s1'−s3')=P/A | e_v=(dV/V_0)×100 | t_f=c'+s_n'tan(φ')","Standard & ID|Dims, w & density|Saturation, consol & rate|Stress-strain & dV curves|Effective Mohr circles (c', φ')|Date, operator, deviations","Never exceed calculated rate.|Check multi-day leaks.|Hold room temp steady.|Release pressure before opening.","cd_triax","triax"],
+[47,"Direct shear box",2,9,"AASHTO T 236 · ASTM D3080","Shears soil along a split-box horizontal plane under normal loads to obtain c' & φ'.","Motorized shear box (60/100 mm sq)|Grid plates & stones|Normal load hanger/weights|Horizontal load ring/cell|0.01 mm LVDTs/gauges|Cutter, trimmer|Balance, oven|Stopwatch","Prepare ≥3 identical specimens (max grain ≤1/10 D & ≤1/6 H).","Assemble box with locking screws; mount in frame.|Apply normal load, flood & consolidate (CD).|Remove locking screws; set drained rate.|Shear logging horizontal disp, shear force & vertical disp to peak/10–15%.|Repeat at higher normal stresses.","t=F/A | s_n=N/A | t_f=c'+s_n tan(φ')","Standard & ID|Size, density & w|Normal stresses, rate & drainage|Shear & vertical disp curves|c' & φ' envelope|Date, operator, deviations","Remove locking screws before shear!|Keep water level steady.|Forced plane differs from triaxial.|Wear gloves.","direct_shear","press"],
+[48,"Laboratory vane shear",2,9,"ASTM D4648","Twists a 4-bladed miniature vane in soft clay to measure undisturbed & remoulded c_u and sensitivity.","Lab vane apparatus w/ calibrated torque spring|Blades (H=2D)|Drive/crank|Tube & extruder|Calibration|Caliper, balance, oven|Stopwatch","Use undisturbed saturated clay in tube/container with clearance.","Check vane & zero torque dial.|Push vane vertically to target depth.|Rotate steadily (~0.1°/s) to peak torque T.|Spin rapidly several turns to remould; re-measure remoulded T.|Take moisture from sheared zone.","c_u(kPa)=1000×T/[π×D²×(H/2+D/6)] | S_t=c_u(und)/c_u(rem)","Standard & ID|Vane dims & spring cal|Depth, rate & time|Peak/remoulded T, c_u & S_t|Moisture|Date, operator, deviations","Use current spring calibration.|Push smoothly without twisting.|Note shells/gravel/lenses.|Handle sharp blades carefully.","vane","triax"],
+[49,"One-dimensional consolidation",2,9,"AASHTO T 216 · ASTM D2435","Stage-loads a confined saturated soil disc in an oedometer for settlement (C_c) and rate (c_v).","Oedometer cell & porous stones|Lever frame & weights|0.001/0.002 mm gauge|Cutting ring (50–75 mm, D/H≥2.5)|Trimmers|Balance (0.01 g), oven|Filter paper & de-aired water|Stopwatch","Trim undisturbed ring flush; save trimmings for w_0 & G_s.","Fit wet papers, stones & ring; seat at ~5 kPa, zero gauge, flood.|Double load every 24 h (e.g. 12.5, 25, 50… kPa) logging dial at 0.1–1440 min.|Unload in stages for rebound C_r if needed.|Oven-dry final specimen.","e=e_0−dH×(1+e_0)/H_0 | C_c=(e_1−e_2)/log10(s_2/s_1) | c_v=0.197×H_dr²/t_50","Standard & ID|Dims, w_0, e_0, density & G_s|Load schedule|e–log σ' & preconsol pressure|C_c, C_r, c_v, m_v|Date, operator, deviations","Trim gently without drying.|Don't shock frame.|Avoid vibration & temp swings.|Apply apparatus compression correction.","consol","press"],
+[50,"Swelling and collapse characteristics",2,9,"ASTM D4546 · ASTM D5333","Measures free swell, swell pressure and collapse potential when wetted under load in an oedometer.","Oedometer cell|Loading frame & weights|0.001 mm gauge|Cutting ring & trimmers|Filter paper|Balance (0.01 g), oven|Distilled/site water|Stopwatch","Trim undisturbed or compact remoulded to field density & natural w.","Mount with dry stones; seat at 1–5 kPa; zero gauge.|Swell: flood at seating load, log expansion; add steps to return H_0 (p_s).|Collapse: double loads at natural w to e.g. 200 kPa, then flood & log collapse.|Dry for final w.","Swell%=(dH/H_0)×100 | CP%=(dH_c/H_1)×100 | p_s=stress returning to H_0","Standard (D4546) & method A/B/C|Dims, w & ρ_d|Seating/inundation stress & water|Curves|% swell, p_s & CP|Date, operator, deviations","Match field w & density.|Flood gently.|Allow days for slow clay swell.|Record method A, B or C.","swell_cp","press"],
+[51,"Permeability in triaxial cell (constant head)",2,9,"ASTM D5084","Measures hydraulic conductivity k of saturated soil in a flexible-wall triaxial cell.","Flexible-wall cell|Constant-head system|Flow burettes/meters|Pressure transducers|Membranes, stones, filter paper|De-aired water & thermometer|Trimmers, balance, oven","Prepare cylinder D ≥25 mm, H ≥ D; save trimmings for w.","Mount with saturated stones & membrane.|Saturate via back-pressure until B ≥ 0.95.|Consolidate to effective confining stress.|Apply head difference h within gradient limit.|Log inflow/outflow vs time & temp until steady; correct k to 20°C.","k=(Q×L)/(A×h×t) | k_20=R_T×k_T | i=h/L","Standard & ID|Dims, density, w_i & w_f|Back pressure, B, stress & i|Flow & temp|k_20|Date, operator, deviations","Keep i within soil limit.|De-air all lines.|Match inflow vs outflow (leaks).|Release pressure before opening.","perm_ch","triax"],
+[91,"Laboratory CBR (soaked and unsoaked)",2,9,"AASHTO T 193 · ASTM D1883","Measures bearing ratio of lab-compacted soil (commonly 96-h soaked) for road pavement design.","CBR press (1.27 mm/min)|152×178 mm mould, collar, perf base|61 mm spacer & filter paper|Proctor rammer|2.27 kg surcharges & swell plate|Swell tripod & soak tank|49.6 mm plunger|Balance, oven, 19/4.75 mm sieves","Replace >19 mm if allowed.|Cure 3 × ~6 kg batches at Proctor OMC.","Compact 3 moulds at 10, 30 & 65 blows/layer; trim & weigh.|Soak 96 h w/ swell plate & surcharges logging initial/final dial.|Drain 15 min, weigh; load at 1.27 mm/min w/ ≥4.54 kg surcharge & 44 N seating.|Log loads 0.64–12.70 mm; sample top 25 mm w; plot & correct.","ρ_d=ρ/(1+w/100) | Swell%=((d_f−d_i)/116.4)×100 | CBR_2.54=(P_2.54/13.2)×100 | CBR_5.08=(P_5.08/20.0)×100","Standard & edition|OMC & MDD|Blows, w & ρ_d|Soak time, surcharge & swell %|CBR @ 2.54/5.08 mm & target %MDD|Final w, date, operator, deviations","Compact at OMC.|Hold 1.27 mm/min.|Seat at 44 N before zeroing.|Repeat if CBR_5.08 > CBR_2.54; report 5.08 if confirmed.","cbr_lab","press"],
+[52,"Thermal conductivity",2,10,"ASTM D5334","Measures soil heat-flow conductivity k using a thermal needle probe.","Thermal needle probe|Constant-current supply|Data logger|Insulated mould|Compaction gear|Balance (0.01 g), oven|Temp room/bath","Prepare specimen at target density & moisture; equilibrate temp.","Insert needle snugly in centre hole.|Verify stable baseline temp.|Apply constant heater power; log T vs time.|Plot T vs ln(t) for straight slope m.|Measure final w & ρ_d.","m=(T_2−T_1)/(ln t_2−ln t_1) | k=q/(4×π×m)","Standard & ID|ρ_d, w & temp|Probe, q & time range|T vs ln(t) plot|k (W/m·K)|Date, operator, deviations","Wait for zero temp drift.|Avoid air gaps around needle.|Don't touch hot probe.|Keep run short to prevent moisture migration.","thermal","gas"],
+[53,"Thermal resistivity",2,10,"ASTM D5334 · IEEE 442","Finds thermal resistivity R = 1/k across moistures (dry-out curve) for buried cable rating.","Thermal needle probe|Constant-current source|Data logger|Container & compaction gear|Balance, oven|Temp room/bath|Sprayer/burette","Compact backfill/native soil at field density across dry-to-wet moistures.","Seal specimen; insert needle in centre hole.|Equilibrate temp; heat & log T vs ln(t).|Compute k & invert to R.|Repeat across moistures to build dry-out curve.","k=q/(4×π×m) | R(K·m/W)=1/k | R(°C·cm/W)=100/k","Standard & ID|ρ_d, moistures & temp|Probe & q|R values & dry-out curve|Spec comparison|Date, operator, deviations","Match site density & moisture.|Snug needle contact.|Cool & equilibrate between runs.|Don't touch hot needle.","thermal_r","gas"],
+[54,"Electrical resistivity",2,10,"ASTM G57 · AASHTO T 288","Measures soil resistivity (lab box or field Wenner 4-probe) for corrosion & earthing design.","AC/reversed-DC 4-terminal meter|Soil box|4 field probes & tape|Distilled water|2 mm sieve|Thermometer|Balance, oven","Lab: air-dry, pass 2 mm sieve.|Field: straight undisturbed line clear of buried metal.","Lab: pack soil box in layers, wire outer=current, inner=potential; measure across water increments to min R.|Field Wenner: 4 equal-spaced probes (spacing a); measure R at varied a.","Box: ρ(ohm·cm)=R×A/L | Wenner: ρ(ohm·m)=2×π×a×R","Standards & ID|Temp, w & condition|Box dims or spacing a|Resistance & min resistivity|Spec comparison, date, operator","Use AC or reversed DC (no one-way DC).|Keep electrodes clean.|Avoid buried pipes/cables.|Note rain & power lines.","elec_res","gas"],
+[55,"Uniaxial compressive strength (UCS)",2,11,"ASTM D7012","Crushes intact rock cores without confinement to classify rock strength.","Press w/ spherical platen|Hardened platens|Core saw & grinder|Caliper (0.1 mm), square|Balance & oven|Safety shield|Eye & ear PPE","Core ≥47 mm (NX 54 mm), L/D = 2.0–2.5, ends ground flat & perpendicular.","Describe rock; measure D, L & flatness.|Centre between platens; close safety guard.|Load steadily (0.5–1.0 MPa/s) to failure.|Log max load P; sketch & photo failure; check w.","A=π×D²/4 | UCS=P/A (MPa) | UCS_corr=UCS×C","Standard, ID, borehole & depth|Rock description & moisture|Dims, density & L/D|Load rate & time|Load, UCS & failure mode|Date, operator, deviations","Always use safety guard & eye PPE.|Uneven ends lower strength.|Test multiple cores.|Use water/dust control.","ucs","press"],
+[56,"UCS with Young's modulus and Poisson's ratio",2,11,"ASTM D7012","Measures axial & lateral strains during rock UCS testing to obtain E and ν.","Press w/ spherical platen|Load cell|Axial & lateral strain gauges/LVDTs|Data logger|Core saw & grinder|Caliper, balance, oven|Shield & PPE","Prepare core (D ≥47 mm, L/D 2–2.5); fit mid-height axial & opposite lateral gauges.","Connect sensors & check zero stability.|Load steadily (~0.5–1.0 MPa/s) logging load & strains continuously.|Remove delicate sensors before violent fail if allowed.|Plot axial/lateral curves; compute UCS, E & ν.","UCS=P/A | E=ds/de_a | ν=−(de_l/de_a)","Standard & ID|Rock, moisture & dims|Strain method & rate|Stress-strain curves|UCS, E (method/level) & ν|Date, operator, deviations","Check gauge bonding & alignment.|State tangent/secant modulus method.|Protect/remove sensors before shatter.|Use PPE & dust control.","ucs_mod","press"],
+[57,"Point load test (PLT)",2,11,"ASTM D5731","Splits rock cores, blocks or lumps between conical platens to find I_s(50) strength index.","Portable PLT press w/ 60°/5 mm conical platens|0.1 mm scale|Caliper|Balance & oven|Marker|Safety glasses","Use ~50 mm cores/blocks/lumps (30–85 mm W, thickness ≥0.3W); ≥10 specimens.","Log rock & bedding orientation.|Clamp between cones (diametral ≥0.5D from end); read D (and W).|Pump steadily to fail in 10–60 s; record P.|Accept only breaks passing through both contact points.","D_e²=D² or 4WD/π | I_s=P/D_e² | I_s(50)=(D_e/50)^0.45×I_s","Standard & ID|Rock, moisture & test type|D, W, P & anisotropy|Individual & mean I_s(50)|Anisotropy index|Date, operator, deviations","Wear eye PPE & guard.|Reject invalid breaks.|Use site-calibrated UCS correlation.|Calibrate ram/gauge.","plt","press"],
+[58,"Slake durability",2,11,"ASTM D4644","Tumbles 10 rock lumps in water in a 2.0 mm mesh drum for two wet-dry cycles to classify rock durability.","Slake drum (140×100 mm, 2 mm mesh), motor & trough|Spare drums|Balance (0.1 g)|Oven 110±5°C|Containers & desiccator|Thermometer|Heat gloves","Select 10 lumps (40–60 g each, 450–550 g total); round sharp corners; dry at 110±5°C.","Weigh drum + dry sample A.|Rotate in ~20°C water at 20 rpm for 10 min.|Oven-dry drum + residue, cool, weigh B.|Run 2nd water cycle, dry, cool, weigh C.|Weigh empty drum D; log water/fragment appearance.","I_d1=((B−D)/(A−D))×100 | I_d2=((C−D)/(A−D))×100","Standard & ID|Rock & initial mass|Water temp & cycles|I_d1 & I_d2 (%)|Fragment & water notes|Date, operator, deviations","Dry to constant mass.|Watch rotating/hot drum.|Handle lumps gently beforehand.|Check mesh cleanliness.","slake","la"],
+[59,"pH value",3,12,"AASHTO T 289 · ASTM D4972","Measures soil pH in water suspension to evaluate concrete/steel corrosion risk and stabilisation response.","pH meter (0.01, ATC) & electrodes|pH 4, 7, 10 buffers|50–100 mL beakers|Balance (0.1 g)|CO2-free distilled water|Stirrer|Wash bottle & tissue|Sieve","Air-dry at room temp (never oven-dry); pass sieve; weigh soil & water at method ratio.","Calibrate with ≥2 fresh buffers.|Mix soil & distilled water in beaker; stand & stir intermittently.|Rinse & blot electrode.|Read stable pH & temp in slurry; run duplicate.","Ratio=M_s:V_w | Mean pH=(pH_1+pH_2)/2","Standard|ID, source, depth & date|Ratio & liquid|Duplicate & mean pH + temp|Buffers|Operator, date, deviations","Keep bulb wet in storage solution.|Calibrate per batch.|Never oven-dry soil.|Wear PPE.","mean_2","burette"],
+[60,"Sulphate content",3,12,"AASHTO T 290 · BS 1377-3","Gravimetric BaSO4 determination of water-soluble sulphate in soil/aggregate to protect concrete.","Balance (0.0001 g)|250–500 mL beakers & hot plate|Vacuum filter & ashless paper|Dilute HCl|10% BaCl2|AgNO3 check|Muffle furnace, crucibles & desiccator|Oven 105–110°C","Prepare clear filtered water extract + distilled blank.","Acidify aliquot with HCl & heat near boiling.|Add BaCl2 slowly stirring; digest hot.|Vacuum-filter & wash chloride-free (AgNO3 check).|Ignite in muffle furnace until filter burns off.|Cool in desiccator & weigh to constant mass; subtract blank.","SO4(mg/L)=(M_BaSO4×0.4115×10⁶)/V | SO3=SO4×0.833","Standard|ID, source & date|Extract ratio|Precipitate & volume|SO4 or SO3 vs spec|Operator, date, deviations","Add BaCl2 slowly to hot acid.|Use hood & PPE for hot HCl.|Barium is toxic.|Burn filter completely.","sulphate_soil","wash"],
+[61,"Chloride content",3,12,"AASHTO T 291 · BS 1377-3","Titration of water-soluble chloride in soil/aggregate to prevent rebar corrosion.","25/50 mL burette|250 mL flasks & white tile|Pipettes|Standard AgNO3|K2CrO4 indicator|Dilute HNO3|Balance (0.01 g)|Filter|Distilled water|Shaker","Prepare clear filtered extract from air-dry sieved sample.","Fill burette with AgNO3.|Pipette extract to flask, adjust pH & add indicator.|Titrate over white tile to persistent end point.|Run blank & duplicate.","Cl(mg/L)=((V_s−V_b)×N×35450)/V | Cl(%)=(C×V_w)/(10×M)","Standard|ID, source & date|Mass & extract water V_w|Titres & normality|Cl vs spec|Operator, date, deviations","AgNO3 stains skin black (PPE).|Standardise & store in brown bottle.|Read meniscus at eye level.|Use white tile.","cl_soil","burette"],
+[62,"Organic content",3,12,"AASHTO T 267 · ASTM D2974","Finds soil organic matter by controlled ignition at ~440°C.","Muffle furnace|Crucibles|Balance (0.01 g)|Oven 110±5°C|Desiccator|Tongs & gloves|Cooling plate|Sieve","Sieve & dry at 110°C to constant mass.","Weigh empty crucible M_c & with dry soil M_c,dry.|Ignite at ~440°C to constant ash mass.|Cool in desiccator & weigh quickly M_c,ash.","Ash(%)=((M_c,ash−M_c)/(M_c,dry−M_c))×100 | OC(%)=100−Ash","Standard|ID, source, depth & date|Drying & ignition temps|Masses|OC % (0.1%)|Operator, date, deviations","Use tongs & heat gloves.|Weigh immediately from desiccator.|Hold ~440°C (avoid carbonate breakdown).","org_content","bal_oven"],
+[63,"Organic impurities",3,12,"AASHTO T 21 · ASTM C40","NaOH colour check for harmful organics in fine aggregate.","250 mL graduated glass bottles|3% NaOH|Colour standard|Cylinder|Balance|Distilled water|Gloves & goggles|Dark box","Take ~450 g natural moist sand (do not dry).","Fill bottle with sand to 130 mL; add 3% NaOH to 200 mL.|Stopper, shake hard & stand 24 h.|Compare liquid colour side-by-side vs standard in good light.","Visual: Lighter/Equal = Pass; Darker = Suspect (mortar test)","Standard|ID, source & date|NaOH % & time|Observed colour|Conclusion|Operator, date, deviations","NaOH is caustic (PPE; exothermic mix).|Don't re-shake before reading.|Compare in same light.|Failing triggers mortar strength check.","qual_na","burette"],
+[64,"Loss on ignition",3,12,"ASTM D7348 · ASTM D2974","Measures % mass lost when dry soil/fill/aggregate is ignited to a stated high temperature.","Muffle furnace|Porcelain/silica crucibles|Analytical balance (0.001 g)|Oven 105–110°C|Desiccator|Tongs & gloves|Sieve & mortar","Prepare size fraction; oven-dry to constant mass & cool in desiccator.","Pre-ignite & weigh crucible.|Add dry sample (M_1) & ignite at method temp to constant mass.|Cool in desiccator & weigh residue (M_2); run duplicate.","LOI(%)=((M_1−M_2)/M_1)×100","Standard|ID, source & date|Temps & times|Before/after masses|LOI %|Operator, date, deviations","Extreme heat PPE & tongs.|Keep exact method temp.|Cool in desiccator.|Never put hot crucible on cold/wet bench.","loi","bal_oven"],
+[65,"Sulphide content (qualitative)",3,12,"Reference to be confirmed","Qualitative acid + lead-acetate paper check for concrete-damaging sulphides.","Beakers/tubes|1:1 HCl|Moist lead acetate paper|Watch glass|Dropper|Hot plate|Gloves, goggles & hood|Distilled water","Log appearance; crush a few grams; prepare quartz blank.","In fume hood, moisten sample in tube & add dilute HCl slowly.|Hold moist lead acetate paper over mouth (brown/black = H2S).|Warm gently if needed; confirm blank negative.","Qualitative: None / Slight / Strong","Method & spec/NEQS ref|ID, source & date|Mass & HCl strength|Paper & odour + blank|Conclusion|Operator, date, deviations","H2S is poisonous & dulls smell—always use hood.|HCl is corrosive.|Quantitative test needed if acid-resistant sulphides suspected.","qual_na","burette"],
+[66,"pH value (water)",3,13,"ASTM D1293","Measures mixing/curing/groundwater pH (0–14) to protect cement hydration and steel.","pH meter w/ ATC|Fresh pH 4, 7, 10 buffers|100 mL beakers|Stirrer|Distilled wash bottle|Lint-free tissue|Thermometer","Fill bottle completely & cap; test promptly at same temp as buffers.","Rinse & blot electrode.|Calibrate with ≥2 fresh buffers; check slope.|Read stable pH & temp while gently stirring; store in storage solution.","Slope(%)=((E_4−E_10)/(59.16×6))×100","Standard (D1293/T 26)|ID, source & time|Date & operator|pH (0.1) & temp|Buffers & slope|Deviations","Never touch or dry glass bulb.|Always report temp.|Use fresh buffers.|Allow extra time in pure water.","ph_slope","burette"],
+[67,"Sulphate content (water)",3,13,"ASTM D516","Turbidimetric BaSO4 spectrophotometer measurement of SO4 in water.","Spectrophotometer/photometer|Matched cuvettes|Magnetic stirrer & identical bars|Class A glassware|BaCl2 crystals|Conditioning reagent|SO4 stock|Filter","Fill clean bottle completely; filter if turbid; dilute into curve range.","Prepare SO4 standards.|Mix sample + conditioning reagent; start constant-speed stirrer.|Add BaCl2 crystals & stir exact time (~1 min).|Read cuvette turbidity/absorbance at exact timing; subtract no-BaCl2 blank.","SO4(mg/L)=C_curve×DF","Standard (D516)|ID, source & time|Date & operator|SO4 (mg/L)|Dilution & range|Deviations","Time stirring & reading strictly.|Same stir speed & bar.|Always run blank.|Barium is toxic.","curve_df","gas"],
+[68,"Chloride content (water)",3,13,"ASTM D512","Argentometric AgNO3 titration of chloride ions in mixing/wash water.","25/50 mL burette|250 mL flasks & white tile|Pipettes|~0.0141 N AgNO3|K2CrO4 indicator|NaCl standard|pH paper & acid/alkali|Distilled water","Filter if turbid/coloured; pipette 50–100 mL aliquot.","Standardise AgNO3 vs NaCl.|Adjust sample pH 7–10; add K2CrO4.|Titrate over white tile to first persistent reddish-brown tinge (A).|Run blank (B) & duplicate.","Cl(mg/L)=((A−B)×N×35450)/V","Standard (D512/APHA 4500-Cl-)|ID, source & time|Date & operator|Cl (mg/L)|AgNO3 N & V|Deviations","AgNO3 stains skin (PPE).|Use white tile.|Keep pH 7–10.|Store AgNO3 in dark bottle.","cl_water","burette"],
+[69,"Conductivity",3,13,"ASTM D1125","Measures water electrical conductivity (µS/cm) as a rapid dissolved-salts screen.","Conductivity meter|0.1°C thermometer|KCl standards|Beakers|Distilled water|Water bath|Tissue","Rinse clean bottle with sample; test promptly at ~25°C or with ATC.","Calibrate with KCl standard; log cell constant K.|Rinse cell with sample; immerse tap-free of bubbles.|Record conductivity & temp; correct to 25°C.","K=κ_std×R_std | κ_25=κ_T/(1+a×(T−25))","Standard (D1125)|ID, source & time|Date & operator|Conductivity @ 25°C|Cell constant & KCl|Sample temp","Tap out electrode bubbles.|Clean fouled cells.|Seal KCl vs CO2.|Always correct to 25°C.","cond","gas"],
+[70,"Total chlorine",3,13,"ASTM D1253","DPD colorimetric determination of residual total chlorine in camp/washing water.","DPD photometer/comparator|Glass cells|DPD + KI reagents|Phosphate buffer|Check standards|Glassware|Cl2-demand-free bottles","Collect gently in Cl2-demand-free bottle; analyse immediately on site.","Zero photometer on untreated sample.|Add buffer, DPD & KI; wait exact development time.|Read within time window; dilute if over-range.","Cl2(mg/L)=R×DF","Standard & method|ID, source & time|Date & operator|Cl2 (mg/L)|Reagent & meter|Sampling-to-test delay","Test immediately (light/shaking loses Cl2).|High Cl2 bleaches DPD.|Mn/Br interfere.|Wear PPE.","curve_df","gas"],
+[71,"Dissolved oxygen",3,13,"ASTM D888","Membrane-probe measurement of dissolved oxygen in streams, discharge and BOD samples.","DO meter w/ membrane probe|Temp sensor|Stirrer/flow|300 mL BOD bottles|Na2SO3 zero solution|Barometer & O2 table|Tissue","Fill bottle by overflowing bubble-free; measure in field if possible.","Inspect membrane; polarise probe.|Calibrate in saturated air/water w/ T & P.|Immerse with steady flow past membrane; log DO & temp.","S(%)=(DO_meas/DO_sat)×100","Standard (D888)|ID, source & time|Date & operator|DO (0.1 mg/L) & temp|% saturation|Calibration & pressure","Keep water flowing past membrane.|No bubbles under membrane.|Test in field.|Don't touch membrane; use Winkler if specified.","do_sat","gas"],
+[72,"Chemical oxygen demand (COD)",3,13,"ASTM D1252","150°C dichromate oxidation of organic/inorganic pollutants in effluent & wash water.","150°C COD block/reflux|Sealed COD tubes|K2Cr2O7 solution|H2SO4-Ag2SO4|HgSO4|FAS & ferroin (or colorimeter)|KHP std|Shield & hood","Acidify <pH 2 in glass if storing; mix well; dilute into range.","Pipette sample + HgSO4 + dichromate + H2SO4-Ag2SO4.|Cap tightly, mix & digest 2 h at 150°C (with blank & KHP std).|Cool & titrate excess dichromate with FAS (or read colorimeter).","COD(mg O2/L)=((A−B)×M×8000)/V","Standard (D1252/APHA 5220)|ID, source & time|Date & operator|COD (mg O2/L)|Volume & dilution|Standard check & deviations","Hot acid, Cr & Hg—use shield, PPE & hood.|Don't heat cracked tubes.|Use HgSO4 for Cl.|Dispose as hazmat.","cod","burette"],
+[73,"Biological oxygen demand (BOD)",3,13,"APHA 5210 B","5-day 20°C microbial oxygen depletion test for wastewater strength.","300 mL BOD bottles|Dark 20±1°C incubator|DO meter/Winkler|Dilution buffer & salts|Seed|GGA standard|Aerator & glassware","Chill ≤4°C; start <24 h; adjust pH 6.5–7.5 @ 20°C; make ≥3 dilutions.","Aerate 20°C dilution water; fill bottles bubble-free (+ seed/blank controls).|Measure initial DO (D_1).|Water-seal stoppers & incubate dark 5 d @ 20°C.|Measure final DO (D_2); verify GGA check.","Unseeded: (D_1−D_2)/P | Seeded: ((D_1−D_2)−(B_1−B_2)×f)/P","Standard (APHA 5210 B)|ID, source & time|Date & operator|BOD_5 (mg/L)|Dilutions & seed|Initial/final DO & GGA","Hold 20°C.|No air bubbles.|Dechlorinate/seed toxic samples.|Infectious waste PPE.","bod","pyc"],
+[74,"Total suspended solids",3,13,"APHA 2540 D","Measures suspended solids caught on a 1.5 µm glass-fibre filter dried at 103–105°C.","1.5 µm glass-fibre filters|Vacuum funnel & flask|Oven 103–105°C|Desiccator|0.1 mg balance|Al dishes|Forceps & cylinders|Distilled water","Mix well; store ~4°C <7 d; pick volume for 2.5–200 mg residue.","Wash, dry 103–105°C & weigh clean filter+dish (B).|Filter stirred volume V under vacuum; rinse 3× & suck dry.|Dry 103–105°C ≥1 h, cool in desiccator & weigh to constant mass (A).","TSS(mg/L)=((A−B)×1000)/V","Standard (APHA 2540 D/D5907)|ID, source & time|Date & operator|TSS (mg/L)|Filter & volume|Temp & constant-mass check","Use smaller V if clogging.|Stay 2.5–200 mg.|Forceps only.|Oven burn PPE.","tss_tds","wash"],
+[75,"Total dissolved solids",3,13,"APHA 2540 C","Evaporates filtered water and dries residue at 180°C to measure total dissolved salts.","Evaporating dishes|180°C oven|Steam bath/hot plate|Desiccator|0.1 mg balance|Glass-fibre filter & vacuum|Pipette|Tongs","Store ~4°C <7 d; pick volume for 2.5–200 mg residue; mix before filtering.","Pre-bake dish at 180°C 1 h, cool & weigh (B).|Filter sample + small rinse into weighed dish.|Evaporate gently below boiling.|Dry 180°C ≥1 h, cool in desiccator & weigh fast to constant mass (A).","TDS(mg/L)=((A−B)×1000)/V","Standard (APHA 2540 C/D5907)|ID, source & time|Date & operator|TDS (mg/L)|180°C temp|Volume & constant-mass check","Weigh fast (hygroscopic).|No spattering.|High Ca/Mg/SO4 need longer drying.|180°C burn hazard.","tss_tds","wash"],
+[76,"Ammoniacal nitrogen",3,13,"ASTM D1426","Colorimetric measurement (e.g. Nessler) of ammonia + ammonium nitrogen in wastewater/groundwater.","Photometer + cells|Class A glassware|Nessler/colour reagent|Rochelle salt|NH4Cl stock|NH3-free water|Distillation rig|Bottles","Test promptly or acidify <pH 2 @ 4°C; filter/distil interferences.","Prepare NH3-free standards & blank.|Add Rochelle salt & colour reagent to sample.|Wait exact development time; read absorbance vs calibration curve.","NH3-N(mg/L)=C_curve×DF","Standard & method|ID, source & time|Date & operator|NH3-N (mg/L as N)|Method & wavelength|Calibration details","Nessler contains mercury (PPE & hazmat).|Keep capped vs lab NH3.|NH3-free water only.|Time colour consistently.","curve_df","gas"],
+[77,"Oil & grease",3,13,"ASTM D7066 · APHA 5520","Liquid-liquid n-hexane extraction of oil & grease in a separatory funnel.","1 L PTFE-stopcock sep funnels|n-Hexane|Anhydrous Na2SO4|Weighed flasks & water bath|Funnels/paper|H2SO4/HCl|Balance & desiccator|Hood","Collect ~1 L in un-rinsed wide glass bottle; mark level; acidify <pH 2 @ 4°C; run <28 d.","Pour into funnel; rinse bottle with solvent into funnel.|Shake 2 min venting often; drain water back.|Filter solvent via Na2SO4 into weighed flask B; repeat 2×.|Refill bottle to mark for V; evaporate solvent gently, cool & weigh A.","O&G(mg/L)=((A−B)×1000)/V","Standard (APHA 5520 B/EPA 1664)|ID, source & time|Date & operator|O&G (mg/L)|Solvent|Volume & preservation","Hexane is flammable—use hood, no flames.|Vent funnel often.|Don't overheat light oils.|Break emulsions per method.","tss_tds","burette"],
+[78,"E. coli",3,14,"APHA 9221 / 9222","0.45 µm membrane filtration & selective incubation for faecal E. coli in drinking/camp water.","Sterile filter unit|0.45 µm gridded sterile membranes|Petri dishes|m-TEC/chromogenic medium|35–44.5°C incubator|Autoclave|Sterile forceps/water|Vacuum & UV|Thiosulphate bottles","Sterilise tap, flush, fill sterile thiosulphate bottle w/ air space; test <6 h (max 24 h).","Place sterile membrane grid-up; filter volume (20–80 colonies) + sterile rinse.|Roll membrane bubble-free onto medium.|Incubate inverted ~24 h (35–44.5°C) + blank/positive control.|Count characteristic colonies.","E. coli(CFU/100mL)=(N/V)×100","Standard (APHA 9222)|ID, source & time|Date & operator|CFU/100 mL|Medium, temp & time|Volume, dilution & controls","Work aseptically.|Treat as infectious (gloves/handwash).|Autoclave plates before disposal.|Test promptly.","cfu","wash"],
+[79,"Total coliform",3,14,"APHA 9221 / 9222","0.45 µm membrane filtration at 35°C for sanitary coliform bacteria count.","Sterile filter unit|0.45 µm sterile membranes|Petri dishes|m-Endo/chromogenic medium|35±0.5°C incubator|Autoclave|Sterile forceps/water|Vacuum|Thiosulphate bottles|Lens","Sterilise tap, flush 1 min, fill thiosulphate bottle w/ air space; test <6 h (max 24 h).","Filter 100 mL (or dilution) + sterile rinse.|Roll membrane bubble-free onto m-Endo.|Incubate inverted 24 h @ 35°C (+ blank/control).|Count dark-red metallic-sheen colonies.","TC(CFU/100mL)=(N/V)×100","Standard (APHA 9222 B)|ID, source & time|Date & operator|CFU/100 mL|Medium & 35°C|Volume, dilution & controls","Sterilise between samples.|Biohazard PPE.|Dilute to avoid overgrowth.|Autoclave waste; check 35°C daily.","cfu","wash"],
+[80,"Faecal coliform",3,14,"APHA 9221 / 9222","0.45 µm membrane filtration at 44.5±0.2°C for thermotolerant faecal coliforms.","Sterile filter unit|0.45 µm sterile membranes|Sealed dishes|m-FC medium|44.5±0.2°C bath/incubator|Autoclave|Sterile forceps/water|Vacuum|Thiosulphate bottles|Counter","Collect in thiosulphate bottle w/ air space; start <6 h (max 24 h); target 20–60 colonies.","Filter sample/dilution + sterile rinse.|Roll membrane bubble-free onto m-FC.|Seal/invert at 44.5°C within 30 min for 24 h (+ blank).|Count blue colonies under magnification.","FC(CFU/100mL)=(N/V)×100","Standard (APHA 9222 D)|ID, source & time|Date & operator|CFU/100 mL|m-FC & 44.5°C|Volume, dilution & controls","Hold 44.5±0.2°C.|Incubate ≤30 min after filtering.|Don't mix 35°C vs 44.5°C.|Biohazard PPE & autoclave.","cfu","wash"],
+[81,"Total suspended particulate matter (TSP)",4,15,"Reference to be confirmed","High-volume air sampling of total airborne dust (µg/m³) near crushing, hauling & earthworks.","High-vol sampler w/ shelter, blower & flow recorder|20×25 cm glass/quartz filters|0.1 mg balance|Conditioning room|Orifice calibrator|Timer, T, P|Forceps & envelopes|Power","Pick unobstructed site; inspect filters; condition ≥24 h & weigh M_i.","Calibrate flow.|Clamp filter rough-side-up; log start T, P & flow.|Run 24 h (typical); log final flow & elapsed time.|Fold dust-in, recondition ≥24 h & weigh M_f.","V=Q_avg×t | TSP(µg/m³)=((M_f−M_i)×10⁶)/V","Method & NEQS/EPA ref|Site, height & date|Start/stop & duration|Flows & volume V|Masses & TSP|Weather, wind, activities, operator","Handle edges with forceps only.|Condition pre/post identically.|Keep clear of trees/walls/generators.|Earth mains power.","air_part","air_samp"],
+[82,"PM10",4,15,"Reference to be confirmed","Measures airborne particulates <10 µm (µg/m³) via a size-selective PM10 inlet.","PM10 size-selective sampler|Glass/quartz filters|0.1 mg balance|Conditioning room|Flow calibrator|Timer, T, P|Forceps & envelopes|Power","Pick unobstructed site; inspect filters; condition ≥24 h & weigh M_i.","Clean & grease PM10 impactor; calibrate to exact inlet design flow.|Clamp filter; log start T, P & flow.|Run 24 h; log final flow & time.|Recondition identically & weigh M_f.","V=Q_avg×t | PM10(µg/m³)=((M_f−M_i)×10⁶)/V","Method & NEQS/EPA ref|Site, height & date|Start/stop & duration|Avg flow & V|Masses & PM10|Weather, dust sources, operator","Hold design flow (ensures 10 µm cut).|Clean/grease impactor regularly.|Forceps on edges only.|Prevent cable trip/shock.","air_part","air_samp"],
+[83,"Sulphur dioxide",4,15,"Reference to be confirmed","Monitors ambient SO2 from diesel/furnace oil plant, crushers & bitumen heaters.","UV-fluorescence SO2 analyser (or bubbler)|Inert probe & filter|Zero air & certified SO2 span|Logger & power|Pump & flow meter|T & P|Shelter","Pick receptor site clear of walls/trees/exhausts; set 1-h or 24-h averaging.","Warm up & leak-check.|Zero with zero-air; span with certified SO2 gas.|Log ambient continuously noting site activity.|Re-check zero/span drift at end; compute averages.","C_avg=ΣC_i/n | C(µg/m³)=C(ppb)×64.07/24.45","Method & NEQS/EPA ref|Site, height & dates|Averaging period|Zero/span & gas cert|Max, mean & capture %|Weather, activities, operator","Calibrate with certified gas.|Inspect dirty filters/leaks.|Secure toxic SO2 cylinders.|Shade shelter.","so2_conv","gas"],
+[84,"Carbon monoxide",4,15,"Reference to be confirmed","Monitors ambient CO from traffic, generators and plant incomplete combustion.","NDIR/electrochemical CO monitor|Inert probe|Filter & moisture trap|Zero gas & CO span|Pump & flow|Logger & power|Shelter|T & P","Pick roadside/receptor site; short kink-free line; set 1-h/8-h averaging.","Warm up & check moisture trap/leaks.|Zero & span with certified CO gas.|Log continuously noting traffic.|Re-check drift at end; compute 1-h/8-h moving averages.","C_avg=ΣC_i/n | C(mg/m³)=C(ppm)×28.01/24.45","Method & NEQS/EPA ref|Site, height & dates|Period & units|Zero/span & cert|Max, mean & capture %|Traffic, weather, operator","CO is deadly—never run generators near shelter.|Maintain moisture trap.|Keep cylinders upright & cool.|Discard data if drift > spec.","co_conv","gas"],
+[85,"Nitrogen dioxide",4,15,"Reference to be confirmed","Monitors ambient NO2 from high-temperature diesel engine & plant combustion.","Chemiluminescence NOx analyser (or passive/bubbler)|Inert probe & filter|Zero air, NO span & GPT/NO2|Pump & flow|Logger & power|Enclosure|T & P","Pick roadside/receptor site; short clean inert line; set 1-h/24-h averaging.","Warm up & leak-check.|Zero & span NO/NOx/NO2 + check converter efficiency.|Log continuously noting traffic/plant.|Re-check drift; compute averages.","NO2=NOx−NO | C(µg/m³)=C(ppb)×46.01/24.45","Method & NEQS/EPA ref|Site, height & dates|Period|Zero, span & converter eff|Max, mean & capture %|Weather, sources, operator","Secure toxic gas cylinders upright.|Check dirty filters & leaks.|Keep enclosure cool/dry.|Keep inlet clear of direct exhaust.","no2_conv","gas"],
+[86,"Leq (dB)",4,16,"ISO 1996-1 / 1996-2","Measures energy-averaged equivalent continuous sound level (dBA) for traffic & construction noise.","Class 1/2 integrating SLM (Leq, dBA, F/S)|Mic + windshield|94 dB @ 1 kHz calibrator|Tripod|Anemometer, thermometer, stopwatch|Log & batteries","Pick boundary/receptor spot 1.2–1.5 m high clear of reflecting walls; avoid rain/wind.","Fit windshield on tripod.|Calibrate pre-test.|Set dBA, Fast & Leq.|Stand clear; log 10–15 min (or spec) noting horns/aircraft/wind.|Re-check calibration post-test.","L_eq=10×log10((1/n)×Σ10^(L_i/10)) | L_tot=10×log10(10^(L1/10)+10^(L2/10))","Standard & limit|Site, pos, height & date|Meter & pre/post cal|Weighting, response & time|Leq (dBA)|Weather, events, operator","Calibrate pre & post.|Always use windshield.|Stand clear of mic.|Wear hearing PPE >85 dBA.","leq","slm"],
+[87,"Lmax (dB)",4,16,"ISO 1996-1 / 1996-2","Captures highest instantaneous sound level (piling, blasting, hammering, trucks).","Class 1/2 meter w/ Lmax & dBA|Mic + windshield|94 dB calibrator|Tripod|Anemometer, thermometer|Stopwatch|Log & batteries","Pick spot 1.2–1.5 m high away from walls; select Fast/Slow; avoid rain/wind.","Mount with windshield & calibrate.|Set dBA, Fast (usual) & Lmax; reset stored peak.|Log period noting each loud event & time.|Record Lmax & check post-test calibration.","L_max=max(L_1…L_n) (state F or S)","Standard & limit|Site, pos, height & date|Meter & pre/post cal|Weighting (e.g. LAFmax)|Lmax & causing event|Weather, operator","Tripping tripod/wind fakes Lmax.|State Fast vs Slow.|Reset before each run.|Hearing PPE near piling/blasting.","lmax","slm"],
+[88,"Lmin (dB)",4,16,"ISO 1996-1 / 1996-2","Records lowest sound level during a window to indicate quiet background noise.","Class 1/2 meter w/ Lmin & dBA|Mic + windshield|94 dB calibrator|Tripod|Anemometer, thermometer|Stopwatch|Log & batteries","Pick spot 1.2–1.5 m high away from walls; include quiet intervals; avoid rain/wind.","Mount with windshield & calibrate.|Set dBA, Fast & Lmin; reset stored min.|Stay silent & clear throughout run.|Record Lmin & check post-test calibration.","L_min=min(L_1…L_n)","Standard|Site, pos, height & date|Meter & pre/post cal|Weighting & response|Lmin (dB)|Weather, unusual noise, operator","Indicative only (lulls/noise floor).|Keep silent (footsteps raise Lmin).|Keep clear of walls.|Calibrate pre & post.","lmin","slm"],
+[89,"L10 (dB)",4,16,"ISO 1996-1 / 1996-2","Finds sound level exceeded 10% of the time, capturing intermittent road traffic peaks.","Class 1/2 percentile/logging SLM|Mic + windshield|94 dB calibrator|Tripod|Anemometer, thermometer|Stopwatch|Log/PC & batteries","Pick spot 1.2–1.5 m high; run 15 min–1 h covering traffic; avoid rain/wind.","Mount with windshield & calibrate.|Set dBA, Fast & percentile (or 1-s logging).|Stand clear; log period + traffic/events.|Read L10 (or rank 0.10×n high-to-low); check post-cal.","L_10 = rank 0.10×n (high-to-low) | P=(N_above/n)×100","Standard|Site, pos, height & date|Meter & pre/post cal|Weighting, interval & duration|L10 (dBA)|Weather, traffic, operator","Sample long enough.|L10 is a level (dB), not duration.|Use windshield.|Note unusual events.","l10","slm"],
+[90,"L90 (dB)",4,16,"ISO 1996-1 / 1996-2","Finds sound level exceeded 90% of the time, representing steady background noise.","Class 1/2 percentile/logging SLM|Mic + windshield|94 dB calibrator|Tripod|Anemometer, thermometer|Stopwatch|Log/PC & batteries","Pick receptor 1.2–1.5 m high; run 15 min–1 h covering quiet periods; avoid rain/wind.","Mount with windshield & calibrate.|Set dBA, Fast & percentile (or 1-s logging).|Stand clear; log steady sources.|Read L90 (or rank 0.90×n high-to-low); check post-cal.","L_90 = rank 0.90×n (high-to-low) | P=(N_above/n)×100","Standard|Site, pos, height & date|Meter & pre/post cal|Weighting, interval & duration|L90 (dBA)|Weather, steady sources, operator","Measure typical conditions.|Note pumps/generators/insects.|Use windshield.|Protect meter & keep cal cert.","l90","slm"]
+];
+
+const TESTS=RAW.map(r=>({id:r[0],title:r[1],catIdx:r[2],cat:CATS[r[2]],sub:SUBS[r[3]],std:r[4],desc:r[5],equip:r[6].split("|"),prep:r[7].split("|"),steps:r[8].split("|"),formula:r[9],report:r[10].split("|"),prec:r[11].split("|"),cid:r[12],svg:r[13]}));
+
+const num=(v)=>Number(v)||0;
+const arr=(s)=>String(s).split(",").map(x=>parseFloat(x.trim())).filter(x=>!isNaN(x));
+const CALCS={
+  psd:["Single-Sieve Check",[["M","Original dry mass M (g)",300],["Mi","Mass retained M_i (g)",45],["cum","Cum % retained (%)",35],["sc","Sum cum % ret (150µm–9.5mm)",265]],v=>`%Ret = ${(v.Mi/v.M*100).toFixed(2)}% | %Pass = ${(100-v.cum).toFixed(2)}% | FM = ${(v.sc/100).toFixed(2)}`],
+  loss_bc:["Fines <75 µm",[["B","Original dry B (g)",500],["C","Washed dry C (g)",482]],v=>`Fines = ${((v.B-v.C)/v.B*100).toFixed(2)} %`],
+  sg_agg:["Specific Gravity & Absorption",[["A","Oven-dry A (g)",1980],["B","SSD B (coarse) / Pyc+water B (fine)",2015],["C","In water C (g)",1265],["S","Fine SSD S (0 if coarse)",0]],v=>{if(v.S>0){const g=v.A/(v.B+v.S-v.C);return `Fine Gsb = ${g.toFixed(3)} | ρ = ${(g*997.5).toFixed(1)} kg/m³`;}const b=v.A/(v.B-v.C),a=v.A/(v.A-v.C);return `Gsb = ${b.toFixed(3)} | Gsa = ${a.toFixed(3)} | Abs = ${((v.B-v.A)/v.A*100).toFixed(2)}%`;}],
+  pct_m2m1:["Index / Percentage",[["M1","Test mass M1 (g)",2500],["M2","Result mass M2 (g)",410]],v=>`Value = ${(v.M2/v.M1*100).toFixed(2)}% (round: ${Math.round(v.M2/v.M1*100)}%)`],
+  ten_fines:["10% Fines Value",[["M1","Sample M1 (g)",2500],["M2","Passing 2.36 mm M2 (g)",245],["x","Max force x (kN)",180]],v=>{const y=v.M2/v.M1*100,F=14*v.x/(y+4);return `Fines = ${y.toFixed(2)}% | Force F = ${F.toFixed(1)} kN (nearest 10: ${Math.round(F/10)*10} kN)`;}],
+  la_loss:["Mass Loss %",[["o","Original mass (g)",5000],["f","Final mass (g)",3850]],v=>`Loss = ${((v.o-v.f)/v.o*100).toFixed(2)} %`],
+  bulk_voids:["Bulk Density & Voids",[["G","Measure+agg G (kg)",18.5],["T","Measure T (kg)",6.2],["V","Volume V (m³)",0.0075],["S","Bulk SG (S)",2.65]],v=>{const M=(v.G-v.T)/v.V;return `M = ${M.toFixed(1)} kg/m³ | Voids = ${((v.S*998-M)/(v.S*998)*100).toFixed(1)}%`;}],
+  clay_lumps:["Clay Lumps %",[["W","Before W (g)",500],["R","Retained R (g)",488]],v=>`Clay/Friable = ${((v.W-v.R)/v.W*100).toFixed(2)} %`],
+  tensile:["Tensile Strength & Elongation",[["Py","Yield P_y (N)",85000],["Pm","Max P_max (N)",108000],["A","Area A (mm²)",201],["L0","L_0 (mm)",200],["Lf","L_f (mm)",232]],v=>`f_y = ${(v.Py/v.A).toFixed(1)} MPa | f_u = ${(v.Pm/v.A).toFixed(1)} MPa | Ratio = ${(v.Pm/v.Py).toFixed(2)} | Elong = ${((v.Lf-v.L0)/v.L0*100).toFixed(1)}%`],
+  bend:["Mandrel Ratio & Angle",[["Dm","Mandrel D_m (mm)",64],["d","Bar d (mm)",16],["am","Measured (°)",180],["ar","Required (°)",180]],v=>`Ratio = ${(v.Dm/v.d).toFixed(2)}d | ${v.am>=v.ar?"PASS":"FAIL"}`],
+  strength_pa:["Compressive Strength",[["P","Max load P (N)",680000],["A","Area A (mm², 0=use d)",22500],["d","Diameter d (mm)",150]],v=>{const A=v.A>0?v.A:Math.PI*v.d*v.d/4;return `Area = ${A.toFixed(1)} mm² | Strength = ${(v.P/A).toFixed(2)} MPa`;}],
+  conc_dens:["Concrete Density",[["A","Dry A (g)",2350],["B","SSD imm B (g)",2460],["C","SSD boil C (g)",2475],["D","In water D (g)",1455]],v=>`ρ_d = ${(v.A/(v.C-v.D)*1000).toFixed(1)} kg/m³ | ρ_s = ${(v.B/(v.C-v.D)*1000).toFixed(1)} kg/m³`],
+  rcpt:["RCPT Charge (Coulombs)",[["list","13 currents (A) every 30 min (0..360)","0.08,0.09,0.09,0.10,0.10,0.11,0.11,0.11,0.12,0.12,0.12,0.12,0.13"]],v=>{const a=arr(v.list);if(a.length<2)return"Need ≥2 readings";let s=a[0]+a[a.length-1];for(let i=1;i<a.length-1;i++)s+=2*a[i];const Q=900*s;return `Q = ${Q.toFixed(0)} C (${Q>4000?"High":Q>2000?"Moderate":Q>1000?"Low":Q>100?"Very Low":"Negligible"})`;},1],
+  isa:["ISA Rate",[["V","Volume V (ml)",1.8],["A","Cap area A (m²)",0.005],["t","Period t (s)",60]],v=>`ISA = ${(v.V/(v.A*v.t)).toFixed(3)} ml/m²/s`],
+  conc_abs:["Absorption & Voids",[["A","Dry A (g)",2350],["B","SSD B (g)",2455],["C","Boiled C (g)",2470],["D","In water D (g)",1450]],v=>`Abs_i = ${((v.B-v.A)/v.A*100).toFixed(2)}% | Abs_b = ${((v.C-v.A)/v.A*100).toFixed(2)}% | Voids = ${((v.C-v.A)/(v.C-v.D)*100).toFixed(2)}%`],
+  thick_dev:["Thickness & Deviation",[["pts","Readings (mm)","52,50,51,49"],["Td","Design T_d (mm)",50]],v=>{const a=arr(v.pts),T=a.reduce((x,y)=>x+y,0)/a.length;return `Avg T = ${T.toFixed(1)} mm | Dev = ${((T-v.Td)/v.Td*100).toFixed(2)}%`;},1],
+  marshall_dens:["Marshall G_mb & Voids",[["A","Dry A (g)",1205],["B","SSD B (g)",1211],["C","Water C (g)",701],["Gmm","G_mm",2.48]],v=>{const g=v.A/(v.B-v.C);return `G_mb = ${g.toFixed(3)} | ρ = ${(g*997).toFixed(1)} kg/m³ | Va = ${((1-g/v.Gmm)*100).toFixed(2)}%`;}],
+  marshall_stab:["Marshall Stability & MQ",[["Sm","Measured S_m (kN)",11.4],["Cf","Correction C_f",1.04],["F","Flow F (mm)",3.2]],v=>{const S=v.Sm*v.Cf;return `Corrected S = ${S.toFixed(2)} kN | MQ = ${(S/v.F).toFixed(2)} kN/mm`;}],
+  bitumen:["Binder Content Pb %",[["W1","Initial W_1 (g)",1500],["W2","Recovered/ignited agg (g)",1422],["Cf","C_f (%, 0=extraction)",0.3]],v=>`Pb = ${((v.W1-v.W2)/v.W1*100-v.Cf).toFixed(2)} %`],
+  masonry_abs:["Masonry Absorption & C/B",[["Wd","Dry W_d (g)",2850],["W24","24h W_24 (g)",3120],["W5","5h boil W_5 (g)",3210]],v=>`A_24 = ${((v.W24-v.Wd)/v.Wd*100).toFixed(2)}% | A_5 = ${((v.W5-v.Wd)/v.Wd*100).toFixed(2)}% | C/B = ${((v.W24-v.Wd)/(v.W5-v.Wd)).toFixed(3)}`],
+  sand_cone:["Sand Replacement Density",[["M1","Init M_1 (g)",6200],["M2","Final M_2 (g)",3150],["Mc","Cone M_c (g)",1120],["rs","Sand ρ (g/cm³)",1.42],["Ms","Soil M_s (g)",2950],["w","Moisture %",11.5],["MDD","MDD (g/cm³)",1.95]],v=>{const V=(v.M1-v.M2-v.Mc)/v.rs,rw=v.Ms/V,rd=rw/(1+v.w/100);return `V = ${V.toFixed(1)} cm³ | ρ_wet = ${rw.toFixed(3)} | ρ_d = ${rd.toFixed(3)} g/cm³ | Comp = ${(rd/v.MDD*100).toFixed(1)}%`;}],
+  core_cutter:["Core Cutter Density",[["M1","Cutter M_1 (g)",980],["M2","Cutter+soil M_2 (g)",3040],["V","Volume V (cm³)",1020],["w","Moisture %",14],["MDD","MDD (g/cm³)",1.86]],v=>{const rw=(v.M2-v.M1)/v.V,rd=rw/(1+v.w/100);return `ρ_wet = ${rw.toFixed(3)} | ρ_d = ${rd.toFixed(3)} g/cm³ | Comp = ${(rd/v.MDD*100).toFixed(1)}%`;}],
+  cbr_field:["In-Situ CBR",[["P25","Load @ 2.5 mm (kN)",2.9],["P50","Load @ 5.0 mm (kN)",4.1]],v=>`CBR 2.5 mm = ${(v.P25/13.2*100).toFixed(1)}% | CBR 5.0 mm = ${(v.P50/20*100).toFixed(1)}%`],
+  mackintosh:["Mackintosh Blows",[["list","Blows per 150 mm","4,6,8,12,18,25"]],v=>{const a=arr(v.list);return `Depth = ${(a.length*0.15).toFixed(2)} m | Total Blows = ${a.reduce((x,y)=>x+y,0)}`;},1],
+  rebound:["Rebound Mean & Angle Corr.",[["list","Valid rebound readings","34,36,35,38,35,37,34,36,35,36"],["Ca","Angle corr C_a",0]],v=>{const a=arr(v.list),m=a.reduce((x,y)=>x+y,0)/a.length;return `Mean R = ${m.toFixed(1)} | Corrected R_c = ${(m+num(v.Ca)).toFixed(1)}`;},1],
+  moisture:["Moisture Content",[["Mc","Can M_c (g)",22.4],["M1","Can+wet M_1 (g)",78.6],["M2","Can+dry M_2 (g)",70.1]],v=>`w = ${((v.M1-v.M2)/(v.M2-v.Mc)*100).toFixed(2)} %`],
+  soil_dens:["Soil Bulk & Dry Density",[["M","Wet M (g)",195],["V","Volume V (cm³)",100],["w","Moisture %",16]],v=>{const r=v.M/v.V;return `ρ = ${r.toFixed(3)} g/cm³ | ρ_d = ${(r/(1+v.w/100)).toFixed(3)} g/cm³ | γ = ${(r*9.81).toFixed(2)} kN/m³`;}],
+  gs_soil:["Soil Specific Gravity",[["Ms","Dry soil M_s (g)",50],["M2","Flask+water M_2 (g)",675.2],["M3","Flask+soil+water M_3 (g)",706.5],["K","Temp factor K",1]],v=>{const g=v.Ms/(v.Ms+v.M2-v.M3);return `G_t = ${g.toFixed(3)} | G_20 = ${(v.K*g).toFixed(3)}`;}],
+  atterberg:["PL & Plasticity Index",[["LL","Liquid Limit %",44],["Mw","Water M_w (g)",2.4],["Md","Dry threads M_d (g)",10.9]],v=>{const pl=v.Mw/v.Md*100;return `PL = ${pl.toFixed(1)}% (round ${Math.round(pl)}) | PI = ${(v.LL-pl).toFixed(1)}%`;}],
+  lin_shrink:["Linear Shrinkage",[["L0","Mould L_0 (mm)",140],["Ld","Dry bar L_d (mm)",126]],v=>`LS = ${((1-v.Ld/v.L0)*100).toFixed(1)}% (whole: ${Math.round((1-v.Ld/v.L0)*100)}%)`],
+  psd_soil:["Cu & Cc Coefficients",[["D10","D_10 (mm)",0.18],["D30","D_30 (mm)",0.65],["D60","D_60 (mm)",2.1]],v=>`Cu = ${(v.D60/v.D10).toFixed(2)} | Cc = ${(v.D30*v.D30/(v.D10*v.D60)).toFixed(2)}`],
+  hydrometer:["Hydrometer % Finer & D",[["Rc","Corrected R_c",24],["a","Factor a",1],["Md","Dry M_d (g)",50],["K","Stokes K",0.0136],["L","Eff depth L (cm)",12.4],["t","Time t (min)",15]],v=>`P = ${(v.Rc*v.a/v.Md*100).toFixed(1)}% | D = ${(v.K*Math.sqrt(v.L/v.t)).toFixed(5)} mm`],
+  disp_pct:["Dispersion %",[["Pnd","Non-dispersed <5µm %",18],["Pd","Dispersed <5µm %",34]],v=>`Dispersion = ${(v.Pnd/v.Pd*100).toFixed(1)} %`],
+  proctor:["Single Point Density & ZAV",[["Mms","Mould+soil M_ms (g)",6050],["Mm","Mould M_m (g)",4180],["V","Volume V (cm³)",943],["w","Moisture %",12.5],["Gs","G_s",2.68]],v=>{const r=(v.Mms-v.Mm)/v.V,rd=r/(1+v.w/100),z=v.Gs/(1+v.w*v.Gs/100);return `ρ_wet = ${r.toFixed(3)} | ρ_d = ${rd.toFixed(3)} | ZAV = ${z.toFixed(3)} Mg/m³`;}],
+  uct:["UCT Strength & Sensitivity",[["P","Peak P (N)",185],["A0","Initial A_0 (mm²)",1134],["dL","dL (mm)",4.2],["L0","L_0 (mm)",76],["qr","Remoulded q_u (kPa)",45]],v=>{const e=v.dL/v.L0,qu=v.P/(v.A0/(1-e))*1000;return `q_u = ${qu.toFixed(1)} kPa | c_u = ${(qu/2).toFixed(1)} kPa | S_t = ${(qu/v.qr).toFixed(2)}`;}],
+  uu_triax:["UU Deviator & c_u",[["P","Load P (N)",210],["A0","Initial A_0 (mm²)",1134],["e","Strain e (dec)",0.08]],v=>{const d=v.P/(v.A0/(1-v.e))*1000;return `(s1−s3) = ${d.toFixed(1)} kPa | c_u = ${(d/2).toFixed(1)} kPa`;}],
+  cu_triax:["CU Effective Stress & B",[["P","Load P (N)",260],["A","Corr area A (mm²)",1220],["s3","Cell s3 (kPa)",200],["u","Pore u (kPa)",85],["du","Δu (kPa)",48],["ds3","Δs3 (kPa)",50]],v=>{const s1=v.s3+v.P/v.A*1000;return `B = ${(v.du/v.ds3).toFixed(2)} | s1' = ${(s1-v.u).toFixed(1)} kPa | s3' = ${(v.s3-v.u).toFixed(1)} kPa`;}],
+  cd_triax:["CD Deviator & Vol Strain",[["P","Load P (N)",320],["A","Corr A (mm²)",1230],["dV","dV (mm³)",3200],["V0","V_0 (mm³)",86000]],v=>`(s1'−s3') = ${(v.P/v.A*1000).toFixed(1)} kPa | e_v = ${(v.dV/v.V0*100).toFixed(2)}%`],
+  direct_shear:["Direct Shear & Envelope",[["F","Shear F (kN)",0.42],["N","Normal N (kN)",0.72],["A","Area A (m²)",0.0036],["c","c' (kPa)",5],["phi","φ' (deg)",32]],v=>{const sn=v.N/v.A;return `τ = ${(v.F/v.A).toFixed(1)} kPa | σ_n = ${sn.toFixed(1)} kPa | τ_f = ${(v.c+sn*Math.tan(v.phi*Math.PI/180)).toFixed(1)} kPa`;}],
+  vane:["Lab Vane c_u & Sensitivity",[["T","Peak T (N·mm)",280],["D","Dia D (mm)",12.7],["H","Height H (mm)",25.4],["Tr","Remoulded T (N·mm)",70]],v=>{const d=Math.PI*v.D*v.D*(v.H/2+v.D/6),cu=1000*v.T/d,cr=1000*v.Tr/d;return `c_u = ${cu.toFixed(2)} kPa | Rem = ${cr.toFixed(2)} kPa | S_t = ${(cu/cr).toFixed(2)}`;}],
+  consol:["Consolidation e, Cc, cv",[["e0","e_0",0.85],["dH","dH (mm)",2.1],["H0","H_0 (mm)",20],["e1","e_1",0.76],["s1","s_1 (kPa)",100],["e2","e_2",0.64],["s2","s_2 (kPa)",200],["Hdr","H_dr (mm)",9.2],["t50","t_50 (min)",12]],v=>`e = ${(v.e0-v.dH*(1+v.e0)/v.H0).toFixed(3)} | C_c = ${((v.e1-v.e2)/Math.log10(v.s2/v.s1)).toFixed(3)} | c_v = ${(0.197*v.Hdr*v.Hdr/v.t50).toFixed(3)} mm²/min`],
+  swell_cp:["Swell / Collapse %",[["dH","dH (mm)",1.45],["H","H_0 or H_1 (mm)",20]],v=>`Percent = ${(v.dH/v.H*100).toFixed(2)} %`],
+  perm_ch:["Constant-Head Permeability",[["Q","Flow Q (cm³)",18],["L","Length L (cm)",10],["A","Area A (cm²)",19.63],["h","Head h (cm)",120],["t","Time t (s)",3600],["RT","R_T",0.95]],v=>{const k=v.Q*v.L/(v.A*v.h*v.t);return `i = ${(v.h/v.L).toFixed(1)} | k_T = ${k.toExponential(3)} | k_20 = ${(v.RT*k).toExponential(3)} cm/s`;}],
+  cbr_lab:["Lab CBR & Swell",[["di","Init dial (mm)",0],["df","Final dial (mm)",1.8],["P25","Load @ 2.54 mm (kN)",3.8],["P50","Load @ 5.08 mm (kN)",5.2]],v=>`Swell = ${((v.df-v.di)/116.4*100).toFixed(2)}% | CBR 2.54 = ${(v.P25/13.2*100).toFixed(1)}% | CBR 5.08 = ${(v.P50/20*100).toFixed(1)}%`],
+  thermal:["Thermal Conductivity k",[["T1","T_1 (°C)",22.1],["T2","T_2 (°C)",26.4],["t1","t_1 (s)",20],["t2","t_2 (s)",180],["q","Heat q (W/m)",15]],v=>{const m=(v.T2-v.T1)/(Math.log(v.t2)-Math.log(v.t1));return `m = ${m.toFixed(3)} K | k = ${(v.q/(4*Math.PI*m)).toFixed(3)} W/(m·K)`;}],
+  thermal_r:["Thermal Resistivity R",[["T1","T_1 (°C)",22.1],["T2","T_2 (°C)",26.4],["t1","t_1 (s)",20],["t2","t_2 (s)",180],["q","Heat q (W/m)",15]],v=>{const m=(v.T2-v.T1)/(Math.log(v.t2)-Math.log(v.t1)),k=v.q/(4*Math.PI*m),R=1/k;return `k = ${k.toFixed(3)} W/m·K | R = ${R.toFixed(3)} K·m/W (${(R*100).toFixed(1)} °C·cm/W)`;}],
+  elec_res:["Electrical Resistivity",[["R","Resistance R (ohm)",45],["A","Box A (cm², 0=Wenner)",16],["L","Box L (cm)",10],["a","Wenner spacing a (m)",2]],v=>v.A>0?`Box ρ = ${(v.R*v.A/v.L).toFixed(1)} ohm·cm`:`Wenner ρ = ${(2*Math.PI*v.a*v.R).toFixed(2)} ohm·m`],
+  ucs:["Rock UCS",[["P","Load P (N)",185000],["D","Dia D (mm)",54],["C","L/D corr C",1]],v=>{const u=v.P/(Math.PI*v.D*v.D/4);return `UCS = ${u.toFixed(2)} MPa | Corrected = ${(u*v.C).toFixed(2)} MPa`;}],
+  ucs_mod:["Rock UCS, E & ν",[["P","Load P (N)",185000],["D","Dia D (mm)",54],["ds","Δσ (MPa)",40],["dea","Δε_a",0.0012],["del","Δε_l",-0.00028]],v=>`UCS = ${(v.P/(Math.PI*v.D*v.D/4)).toFixed(1)} MPa | E = ${(v.ds/v.dea/1000).toFixed(2)} GPa | ν = ${(-v.del/v.dea).toFixed(3)}`],
+  plt:["Point Load Index I_s(50)",[["P","Load P (N)",12500],["D","Separation D (mm)",52],["W","Width W (0=diametral)",0]],v=>{const d2=v.W>0?4*v.W*v.D/Math.PI:v.D*v.D,De=Math.sqrt(d2),Is=v.P/d2;return `D_e = ${De.toFixed(1)} mm | I_s = ${Is.toFixed(2)} MPa | I_s(50) = ${(Math.pow(De/50,0.45)*Is).toFixed(2)} MPa`;}],
+  slake:["Slake Durability Index",[["A","Drum+dry A (g)",1950],["B","Cycle 1 B (g)",1885],["C","Cycle 2 C (g)",1830],["D","Drum D (g)",1450]],v=>`I_d1 = ${((v.B-v.D)/(v.A-v.D)*100).toFixed(1)}% | I_d2 = ${((v.C-v.D)/(v.A-v.D)*100).toFixed(1)}%`],
+  mean_2:["Mean Duplicate pH",[["p1","pH 1",7.4],["p2","pH 2",7.6]],v=>`Mean pH = ${((v.p1+v.p2)/2).toFixed(2)}`],
+  sulphate_soil:["Sulphate SO4 & SO3",[["m","BaSO4 mass (g)",0.085],["V","Extract V (mL)",100]],v=>{const s=v.m*0.4115*1e6/v.V;return `SO4 = ${s.toFixed(1)} mg/L | SO3 = ${(s*0.833).toFixed(1)} mg/L`;}],
+  cl_soil:["Soil/Agg Chloride",[["Vs","Sample V_s (mL)",14.2],["Vb","Blank V_b (mL)",0.3],["N","Normality N",0.0141],["V","Aliquot V (mL)",50],["Vw","Total water V_w (L)",0.5],["M","Sample M (g)",250]],v=>{const C=(v.Vs-v.Vb)*v.N*35450/v.V;return `Extract Cl = ${C.toFixed(1)} mg/L | Solid Cl = ${(C*v.Vw/(10*v.M)).toFixed(4)} %`;}],
+  org_content:["Organic Content %",[["Mc","Crucible M_c (g)",31.2],["Md","Crucible+dry (g)",56.2],["Ma","Crucible+ash (g)",54.1]],v=>{const a=(v.Ma-v.Mc)/(v.Md-v.Mc)*100;return `Ash = ${a.toFixed(2)}% | Organic Content = ${(100-a).toFixed(2)}%`;}],
+  qual_na:["Qualitative Test",[],()=>"Qualitative visual check — no calculation needed. Log observation in Report tab.",1],
+  loi:["Loss on Ignition %",[["M1","Before M_1 (g)",10],["M2","After M_2 (g)",9.42]],v=>`LOI = ${((v.M1-v.M2)/v.M1*100).toFixed(2)} %`],
+  ph_slope:["pH Electrode Slope",[["E4","mV @ pH 4",175],["E10","mV @ pH 10",-178]],v=>`Slope = ${((v.E4-v.E10)/(59.16*6)*100).toFixed(1)} %`],
+  curve_df:["Concentration × DF",[["C","Reading (mg/L)",18.5],["DF","Dilution factor",2]],v=>`Result = ${(v.C*v.DF).toFixed(2)} mg/L`],
+  cl_water:["Water Chloride (mg/L)",[["A","Sample A (mL)",12.4],["B","Blank B (mL)",0.2],["N","Normality N",0.0141],["V","Volume V (mL)",50]],v=>`Cl = ${((v.A-v.B)*v.N*35450/v.V).toFixed(1)} mg/L`],
+  cond:["Conductivity @ 25°C",[["kT","Reading κ_T (µS/cm)",1180],["T","Temp T (°C)",21.5],["a","Coeff a",0.02]],v=>`κ_25 = ${(v.kT/(1+v.a*(v.T-25))).toFixed(1)} µS/cm`],
+  do_sat:["DO % Saturation",[["m","Measured DO (mg/L)",7.4],["s","Sat DO (mg/L)",8.6]],v=>`Saturation = ${(v.m/v.s*100).toFixed(1)} %`],
+  cod:["COD (mg O2/L)",[["A","Blank FAS A (mL)",24.8],["B","Sample FAS B (mL)",16.2],["M","FAS molarity M",0.1],["V","Sample V (mL)",20]],v=>`COD = ${((v.A-v.B)*v.M*8000/v.V).toFixed(1)} mg O2/L`],
+  bod:["BOD_5 (mg/L)",[["D1","D_1 (mg/L)",8.4],["D2","D_2 (mg/L)",4.1],["P","Fraction P",0.1],["B1","Seed B_1 (0=unseeded)",0],["B2","Seed B_2",0],["f","Seed ratio f",0]],v=>`BOD_5 = ${(((v.D1-v.D2)-(v.B1-v.B2)*v.f)/v.P).toFixed(1)} mg/L`],
+  tss_tds:["TSS / TDS / O&G (mg/L)",[["A","Final+dish/flask A (mg)",142.8],["B","Clean dish/flask B (mg)",118.2],["V","Sample V (mL)",250]],v=>`Concentration = ${((v.A-v.B)*1000/v.V).toFixed(1)} mg/L`],
+  cfu:["Colony Count (CFU/100 mL)",[["N","Colonies N",42],["V","Filtered V (mL)",100]],v=>`Count = ${(v.N/v.V*100).toFixed(1)} CFU/100 mL`],
+  air_part:["TSP / PM10 (µg/m³)",[["Mi","Initial filter M_i (g)",3.1245],["Mf","Final filter M_f (g)",3.3412],["Q","Avg flow Q_avg (m³/min)",1.15],["t","Time t (min)",1440]],v=>{const V=v.Q*v.t;return `Air Volume V = ${V.toFixed(1)} m³ | Conc = ${((v.Mf-v.Mi)*1e6/V).toFixed(1)} µg/m³`;}],
+  so2_conv:["SO2 Mean & ppb → µg/m³",[["list","SO2 readings (ppb)","14,18,16,22,15"]],v=>{const a=arr(v.list),m=a.reduce((x,y)=>x+y,0)/a.length;return `Mean = ${m.toFixed(1)} ppb | ${(m*64.07/24.45).toFixed(1)} µg/m³`;},1],
+  co_conv:["CO Mean & ppm → mg/m³",[["list","CO readings (ppm)","1.8,2.1,2.4,1.9"]],v=>{const a=arr(v.list),m=a.reduce((x,y)=>x+y,0)/a.length;return `Mean = ${m.toFixed(2)} ppm | ${(m*28.01/24.45).toFixed(2)} mg/m³`;},1],
+  no2_conv:["NO2 = NOx − NO & ppb → µg/m³",[["nox","NOx (ppb)",48],["no","NO (ppb)",22]],v=>{const n2=v.nox-v.no;return `NO2 = ${n2.toFixed(1)} ppb | ${(n2*46.01/24.45).toFixed(1)} µg/m³`;}],
+  leq:["Leq Energy Average (dB)",[["list","Sound readings L_i (dBA)","62.4,65.1,60.8,68.2,61.5"]],v=>{const a=arr(v.list),l=10*Math.log10(a.reduce((s,x)=>s+Math.pow(10,x/10),0)/a.length);return `L_eq = ${l.toFixed(1)} dBA`;} ,1],
+  lmax:["Lmax (dB)",[["list","Sound readings (dBA)","62.4,78.1,65.0,71.2"]],v=>`L_max = ${Math.max(...arr(v.list)).toFixed(1)} dB`,1],
+  lmin:["Lmin (dB)",[["list","Sound readings (dBA)","62.4,48.7,55.0,51.2"]],v=>`L_min = ${Math.min(...arr(v.list)).toFixed(1)} dB`,1],
+  l10:["L10 (10% Exceeded)",[["list","Logged readings (dBA)","55,58,61,63,66,68,70,59,62,64"]],v=>{const a=arr(v.list).sort((x,y)=>y-x),idx=Math.max(0,Math.ceil(0.1*a.length)-1);return `L_10 ≈ ${a[idx].toFixed(1)} dBA (n=${a.length})`;},1],
+  l90:["L90 (90% Exceeded)",[["list","Logged readings (dBA)","55,58,61,63,66,68,70,59,62,64"]],v=>{const a=arr(v.list).sort((x,y)=>y-x),idx=Math.min(a.length-1,Math.floor(0.9*a.length));return `L_90 ≈ ${a[idx].toFixed(1)} dBA (n=${a.length})`;},1]
+};
+
+function getSVG(t){
+  const c="var(--primary)", a="var(--accent)", m="var(--muted)", pl="var(--pl)";
+  const wrap=(inner)=>`<svg viewBox="0 0 320 130" fill="none" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
+  const map={
+    sieve:wrap(`<rect x="105" y="18" width="110" height="12" rx="3" stroke="${c}" stroke-width="2"/><rect x="110" y="32" width="100" height="58" stroke="${c}" stroke-width="2"/><line x1="110" y1="47" x2="210" y2="47" stroke="${m}" stroke-dasharray="4 3"/><line x1="110" y1="62" x2="210" y2="62" stroke="${m}" stroke-dasharray="4 3"/><line x1="110" y1="77" x2="210" y2="77" stroke="${m}" stroke-dasharray="4 3"/><polygon points="135,44 185,44 172,34 148,34" fill="${a}" opacity=".7"/><rect x="85" y="92" width="150" height="18" rx="4" stroke="${c}" stroke-width="2"/><path d="M245 96h28M245 104h28" stroke="${a}" stroke-width="2"/>`),
+    wash:wrap(`<path d="M40 24h70v10H98l-6 12" stroke="${c}" stroke-width="2"/><path d="M95 50l10 18M105 50l10 18" stroke="#4da3ff" stroke-width="2"/><rect x="105" y="68" width="110" height="24" stroke="${c}" stroke-width="2"/><line x1="105" y1="80" x2="215" y2="80" stroke="${m}" stroke-dasharray="3 2"/><rect x="85" y="98" width="150" height="24" rx="4" fill="#4da3ff" fill-opacity=".2" stroke="${c}" stroke-width="2"/>`),
+    pyc:wrap(`<circle cx="95" cy="82" r="24" stroke="${c}" stroke-width="2" fill="#4da3ff" fill-opacity=".18"/><rect x="88" y="25" width="14" height="35" stroke="${c}" stroke-width="2"/><line x1="85" y1="40" x2="105" y2="40" stroke="${a}" stroke-width="2"/><rect x="195" y="55" width="60" height="55" rx="4" fill="#4da3ff" fill-opacity=".15" stroke="${c}" stroke-width="2"/><rect x="208" y="68" width="34" height="28" stroke="${a}" stroke-width="2" stroke-dasharray="3 2"/><line x1="225" y1="22" x2="225" y2="68" stroke="${m}" stroke-width="1.5"/>`),
+    press:wrap(`<rect x="75" y="16" width="170" height="98" stroke="${c}" stroke-width="2"/><rect x="115" y="34" width="90" height="12" stroke="${c}" stroke-width="2"/><rect x="125" y="48" width="70" height="44" fill="${a}" fill-opacity=".5" stroke="${a}" stroke-width="2"/><rect x="110" y="92" width="100" height="10" stroke="${c}" stroke-width="2"/><path d="M160 6v26" stroke="${a}" stroke-width="3"/><circle cx="275" cy="55" r="20" stroke="${c}" stroke-width="2"/><line x1="275" y1="55" x2="286" y2="45" stroke="${a}" stroke-width="2"/>`),
+    impact:wrap(`<rect x="95" y="14" width="130" height="102" stroke="${c}" stroke-width="2"/><rect x="140" y="28" width="40" height="24" fill="${m}" fill-opacity=".3" stroke="${c}" stroke-width="2"/><path d="M160 58v20" stroke="${a}" stroke-width="2.5"/><rect x="132" y="84" width="56" height="24" stroke="${c}" stroke-width="2"/><rect x="140" y="90" width="40" height="14" fill="${a}" fill-opacity=".6"/>`),
+    gauge:wrap(`<rect x="25" y="36" width="125" height="56" stroke="${c}" stroke-width="2"/><rect x="40" y="48" width="12" height="32" stroke="${m}"/><rect x="65" y="48" width="18" height="32" stroke="${m}"/><rect x="96" y="48" width="24" height="32" stroke="${m}"/><ellipse cx="46" cy="54" rx="4" ry="14" fill="${a}"/><rect x="175" y="84" width="120" height="12" stroke="${c}" stroke-width="2"/><line x1="200" y1="54" x2="200" y2="84" stroke="${c}" stroke-width="3"/><line x1="270" y1="54" x2="270" y2="84" stroke="${c}" stroke-width="3"/><rect x="190" y="38" width="90" height="10" rx="4" fill="${a}"/>`),
+    la:wrap(`<circle cx="150" cy="64" r="44" stroke="${c}" stroke-width="2.5"/><rect x="106" y="60" width="20" height="6" fill="${a}"/><circle cx="138" cy="84" r="6" stroke="${m}" stroke-width="2"/><circle cx="154" cy="88" r="6" stroke="${m}" stroke-width="2"/><circle cx="170" cy="82" r="6" stroke="${m}" stroke-width="2"/><path d="M188 26a46 46 0 0 1 12 22" stroke="${a}" stroke-width="2.5"/>`),
+    slm:wrap(`<line x1="160" y1="62" x2="132" y2="115" stroke="${c}" stroke-width="2"/><line x1="160" y1="62" x2="188" y2="115" stroke="${c}" stroke-width="2"/><rect x="146" y="42" width="28" height="34" rx="4" stroke="${c}" stroke-width="2"/><ellipse cx="160" cy="24" rx="10" ry="12" fill="#4da3ff" fill-opacity=".3" stroke="${c}" stroke-width="2"/><path d="M72 45c10 10 10 28 0 38M88 38c14 14 14 38 0 52" stroke="${a}" stroke-width="2"/><rect x="208" y="35" width="84" height="58" rx="6" stroke="${c}" stroke-width="2"/><text x="218" y="55" fill="${c}" font-size="11" font-weight="700">Leq / Lmax</text><text x="218" y="74" fill="${m}" font-size="10">L10 / L90</text>`),
+    gas:wrap(`<path d="M40 70V34c0-10 16-10 16 0v36" stroke="${c}" stroke-width="2"/><rect x="75" y="54" width="28" height="32" rx="4" stroke="${a}" stroke-width="2"/><rect x="130" y="36" width="86" height="58" rx="6" stroke="${c}" stroke-width="2"/><rect x="145" y="48" width="44" height="18" fill="${pl}" stroke="${c}"/><line x1="56" y1="70" x2="130" y2="70" stroke="${c}" stroke-width="2"/><rect x="238" y="46" width="52" height="40" rx="5" stroke="${c}" stroke-width="2"/><path d="M245 72l10-12 10 8 15-14" stroke="${a}" stroke-width="2"/>`),
+    air_samp:wrap(`<polygon points="90,42 160,18 230,42" stroke="${c}" stroke-width="2" fill="${pl}"/><rect x="105" y="48" width="110" height="66" stroke="${c}" stroke-width="2"/><line x1="125" y1="58" x2="195" y2="58" stroke="${a}" stroke-width="4"/><circle cx="160" cy="86" r="14" stroke="${c}" stroke-width="2"/>`),
+    triax:wrap(`<rect x="105" y="24" width="110" height="84" rx="4" fill="#4da3ff" fill-opacity=".15" stroke="${c}" stroke-width="2"/><rect x="140" y="42" width="40" height="48" fill="${a}" fill-opacity=".55" stroke="${a}" stroke-width="2"/><line x1="160" y1="8" x2="160" y2="42" stroke="${c}" stroke-width="2.5"/><line x1="70" y1="36" x2="105" y2="36" stroke="${m}" stroke-width="2"/><line x1="215" y1="36" x2="250" y2="36" stroke="${m}" stroke-width="2"/>`),
+    burette:wrap(`<line x1="95" y1="16" x2="95" y2="114" stroke="${c}" stroke-width="2.5"/><rect x="145" y="16" width="14" height="52" stroke="${c}" stroke-width="2" fill="#4da3ff" fill-opacity=".2"/><polygon points="152,78 130,110 174,110" stroke="${c}" stroke-width="2" fill="${a}" fill-opacity=".35"/><rect x="115" y="110" width="75" height="6" stroke="${m}"/>`)
+  };
+  return map[t.svg]||wrap(`<rect x="85" y="25" width="150" height="80" rx="10" stroke="${c}" stroke-width="2" fill="${a}" fill-opacity=".12"/><text x="160" y="68" text-anchor="middle" fill="${c}" font-size="14" font-weight="700">Test #${t.id}</text><text x="160" y="88" text-anchor="middle" fill="${m}" font-size="11">${esc(t.sub)}</text>`);
+}
+
+// Multi-sieve table + Semi-log Grading Curve state & plotter (Tests #1, #26, #40)
+let sieveRows = [
+  {sz:25,m:0},{sz:19,m:42},{sz:12.5,m:98},{sz:9.5,m:85},{sz:4.75,m:145},
+  {sz:2.36,m:110},{sz:1.18,m:82},{sz:0.60,m:56},{sz:0.30,m:41},{sz:0.15,m:24},{sz:0.075,m:11},{sz:0,m:6}
+];
+function renderSievePlotter(tid){
+  return `<div class="ccard">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:6px">
+      <strong>Multi-Sieve Table &amp; Semi-Log Grading Curve</strong>
+      <div class="fld" style="display:flex;align-items:center;gap:6px">
+        <label style="margin:0">Original Dry Mass M (g):</label>
+        <input id="sv_M" type="number" step="any" value="700" style="width:90px" oninput="updSieve(${tid})"/>
+      </div>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="ptbl">
+        <thead><tr><th>Sieve (mm)</th><th>Retained (g)</th><th>% Retained</th><th>Cum % Ret</th><th>% Passing</th></tr></thead>
+        <tbody id="sv_body">
+          ${sieveRows.map((r,i)=>`<tr>
+            <td>${r.sz>0?r.sz+" mm":"Pan"}</td>
+            <td><input type="number" step="any" value="${r.m}" oninput="sieveRows[${i}].m=parseFloat(this.value)||0;updSieve(${tid})"/></td>
+            <td id="sv_pr_${i}">-</td><td id="sv_cr_${i}">-</td><td id="sv_pp_${i}">-</td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+    <div class="cres" id="sv_sum"></div>
+    <div class="chartbox"><svg id="sv_svg" viewBox="0 0 600 260"></svg></div>
+  </div>`;
+}
+function updSieve(tid){
+  const M=parseFloat(document.getElementById("sv_M").value)||0;
+  const tot=sieveRows.reduce((s,r)=>s+r.m,0);
+  const base=M>0?M:tot||1;
+  let cum=0, pts=[];
+  const fmSizes=[9.5,4.75,2.36,1.18,0.6,0.3,0.15];
+  let fmSum=0;
+  sieveRows.forEach((r,i)=>{
+    const pr=(r.m/base)*100; cum+=pr; const pp=Math.max(0,100-cum);
+    document.getElementById("sv_pr_"+i).textContent=pr.toFixed(1)+"%";
+    document.getElementById("sv_cr_"+i).textContent=cum.toFixed(1)+"%";
+    document.getElementById("sv_pp_"+i).textContent=pp.toFixed(1)+"%";
+    if(r.sz>0){pts.push({sz:r.sz,pp}); if(fmSizes.includes(r.sz))fmSum+=cum;}
+  });
+  const diff=M>0?Math.abs(tot-M)/M*100:0;
+  const tol=tid===40?1.0:0.3;
+  function interpD(target){
+    for(let i=0;i<pts.length-1;i++){
+      const a=pts[i],b=pts[i+1];
+      if((a.pp>=target&&b.pp<=target)||(a.pp<=target&&b.pp>=target)){
+        if(a.pp===b.pp)return a.sz;
+        const f=(target-b.pp)/(a.pp-b.pp);
+        return Math.pow(10,Math.log10(b.sz)+f*(Math.log10(a.sz)-Math.log10(b.sz)));
+      }
+    }
+    return null;
+  }
+  const d10=interpD(10),d30=interpD(30),d60=interpD(60);
+  const cu=(d10&&d60)?(d60/d10).toFixed(2):"-", cc=(d10&&d30&&d60)?(d30*d30/(d10*d60)).toFixed(2):"-";
+  const txt=`Sum = ${tot.toFixed(1)} g (Loss/Diff: ${diff.toFixed(2)}% ${diff<=tol?'✓ OK':'⚠ Exceeds '+tol+'%'}) | FM = ${(fmSum/100).toFixed(2)} | D10=${d10?d10.toFixed(2):'-'} D30=${d30?d30.toFixed(2):'-'} D60=${d60?d60.toFixed(2):'-'} | Cu=${cu} Cc=${cc}`;
+  document.getElementById("sv_sum").textContent=txt;
+  state.lastCalc[tid]=txt;
+
+  // Draw Semi-Log SVG
+  const W=600,H=260,pl=48,pr=20,pt=16,pb=36,pw=W-pl-pr,ph=H-pt-pb;
+  const lmin=Math.log10(0.05), lmax=Math.log10(50);
+  const xOf=(sz)=>pl+((Math.log10(sz)-lmin)/(lmax-lmin))*pw;
+  const yOf=(p)=>pt+(1-p/100)*ph;
+  let g=`<rect x="${pl}" y="${pt}" width="${pw}" height="${ph}" fill="none" stroke="var(--border)"/>`;
+  [0,20,40,60,80,100].forEach(p=>{const y=yOf(p);g+=`<line x1="${pl}" y1="${y}" x2="${pl+pw}" y2="${y}" stroke="var(--border)" stroke-dasharray="3 3"/><text x="${pl-6}" y="${y+4}" text-anchor="end" font-size="10" fill="var(--muted)">${p}%</text>`;});
+  [0.075,0.15,0.3,0.6,1.18,2.36,4.75,9.5,19,37.5].forEach(sz=>{const x=xOf(sz);g+=`<line x1="${x}" y1="${pt}" x2="${x}" y2="${pt+ph}" stroke="var(--border)" stroke-dasharray="2 3"/><text x="${x}" y="${pt+ph+14}" text-anchor="middle" font-size="9" fill="var(--muted)">${sz}</text>`;});
+  g+=`<text x="${pl+pw/2}" y="${H-4}" text-anchor="middle" font-size="10" fill="var(--muted)">Sieve Size (mm, log scale)</text>`;
+  const poly=pts.map(p=>`${xOf(p.sz).toFixed(1)},${yOf(p.pp).toFixed(1)}`).join(" ");
+  g+=`<polyline fill="none" stroke="var(--primary)" stroke-width="2.5" points="${poly}"/>`;
+  pts.forEach(p=>{g+=`<circle cx="${xOf(p.sz).toFixed(1)}" cy="${yOf(p.pp).toFixed(1)}" r="3.5" fill="var(--accent)"/>`;});
+  document.getElementById("sv_svg").innerHTML=g;
+}
+
+// Proctor Compaction Curve + ZAV Plotter (Tests #92, #93)
+let proctorPts = [
+  {mms:5820,w:8.2},{mms:5975,w:10.4},{mms:6105,w:12.6},{mms:6085,w:14.8},{mms:5980,w:17.1}
+];
+function renderProctorPlotter(tid){
+  return `<div class="ccard">
+    <div style="font-weight:700;margin-bottom:6px">Proctor Compaction Curve &amp; Zero Air Voids (ZAV) Plotter</div>
+    <div class="cgrid" style="margin-bottom:8px">
+      <div class="fld"><label>Empty Mould M_m (g)</label><input id="pr_Mm" type="number" step="any" value="4180" oninput="updProctor(${tid})"/></div>
+      <div class="fld"><label>Mould Volume V (cm³)</label><input id="pr_V" type="number" step="any" value="943" oninput="updProctor(${tid})"/></div>
+      <div class="fld"><label>Specific Gravity G_s</label><input id="pr_Gs" type="number" step="any" value="2.68" oninput="updProctor(${tid})"/></div>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="ptbl">
+        <thead><tr><th>Point</th><th>Mould + Soil M_ms (g)</th><th>Moisture w (%)</th><th>Wet ρ (Mg/m³)</th><th>Dry ρ_d (Mg/m³)</th><th>ZAV (Mg/m³)</th></tr></thead>
+        <tbody>
+          ${proctorPts.map((p,i)=>`<tr>
+            <td>#${i+1}</td>
+            <td><input type="number" step="any" value="${p.mms}" oninput="proctorPts[${i}].mms=parseFloat(this.value)||0;updProctor(${tid})"/></td>
+            <td><input type="number" step="any" value="${p.w}" oninput="proctorPts[${i}].w=parseFloat(this.value)||0;updProctor(${tid})"/></td>
+            <td id="pr_rw_${i}">-</td><td id="pr_rd_${i}">-</td><td id="pr_zv_${i}">-</td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+    <div class="cres" id="pr_sum"></div>
+    <div class="chartbox"><svg id="pr_svg" viewBox="0 0 600 260"></svg></div>
+  </div>`;
+}
+function updProctor(tid){
+  const Mm=parseFloat(document.getElementById("pr_Mm").value)||0;
+  const V=parseFloat(document.getElementById("pr_V").value)||1;
+  const Gs=parseFloat(document.getElementById("pr_Gs").value)||2.68;
+  const pts=[];
+  proctorPts.forEach((p,i)=>{
+    const rw=(p.mms-Mm)/V, rd=rw/(1+p.w/100), zv=Gs/(1+p.w*Gs/100);
+    document.getElementById("pr_rw_"+i).textContent=rw.toFixed(3);
+    document.getElementById("pr_rd_"+i).textContent=rd.toFixed(3);
+    document.getElementById("pr_zv_"+i).textContent=zv.toFixed(3);
+    pts.push({w:p.w,rd,zv});
+  });
+  pts.sort((a,b)=>a.w-b.w);
+  // Fit parabola around top 3 points for peak estimate
+  let best=pts.reduce((a,b)=>b.rd>a.rd?b:a,pts[0]), mdd=best.rd, omc=best.w;
+  const idx=pts.indexOf(best);
+  if(idx>0&&idx<pts.length-1){
+    const p1=pts[idx-1],p2=pts[idx],p3=pts[idx+1];
+    const denom=(p1.w-p2.w)*(p1.w-p3.w)*(p2.w-p3.w);
+    if(Math.abs(denom)>1e-9){
+      const A=(p3.w*(p2.rd-p1.rd)+p2.w*(p1.rd-p3.rd)+p1.w*(p3.rd-p2.rd))/denom;
+      const B=(p3.w*p3.w*(p1.rd-p2.rd)+p2.w*p2.w*(p3.rd-p1.rd)+p1.w*p1.w*(p2.rd-p3.rd))/denom;
+      if(A<0){const vx=-B/(2*A);const vy=A*vx*vx+B*vx+(p1.rd-A*p1.w*p1.w-B*p1.w);if(vy>=best.rd){omc=vx;mdd=vy;}}
+    }
+  }
+  const resTxt=`Estimated MDD = ${mdd.toFixed(2)} Mg/m³ | OMC = ${omc.toFixed(1)} %`;
+  document.getElementById("pr_sum").textContent=resTxt;
+  state.lastCalc[tid]=resTxt;
+
+  // Draw SVG
+  const W=600,H=260,pl=54,pr=20,pt=16,pb=36,pw=W-pl-pr,ph=H-pt-pb;
+  const wmin=Math.max(0,Math.floor(pts[0].w-2)), wmax=Math.ceil(pts[pts.length-1].w+2);
+  const allY=pts.map(p=>p.rd).concat([mdd]);
+  const ymin=Math.floor((Math.min(...allY)-0.08)*20)/20, ymax=Math.ceil((Math.max(...allY,pts[0].zv*0.98)+0.06)*20)/20;
+  const xOf=(w)=>pl+((w-wmin)/(wmax-wmin))*pw;
+  const yOf=(d)=>pt+(1-(d-ymin)/(ymax-ymin))*ph;
+  let g=`<rect x="${pl}" y="${pt}" width="${pw}" height="${ph}" fill="none" stroke="var(--border)"/>`;
+  for(let k=0;k<=5;k++){const d=ymin+k*(ymax-ymin)/5,y=yOf(d);g+=`<line x1="${pl}" y1="${y}" x2="${pl+pw}" y2="${y}" stroke="var(--border)" stroke-dasharray="3 3"/><text x="${pl-6}" y="${y+4}" text-anchor="end" font-size="10" fill="var(--muted)">${d.toFixed(2)}</text>`;}
+  for(let w=wmin;w<=wmax;w+=2){const x=xOf(w);g+=`<line x1="${x}" y1="${pt}" x2="${x}" y2="${pt+ph}" stroke="var(--border)" stroke-dasharray="2 3"/><text x="${x}" y="${pt+ph+14}" text-anchor="middle" font-size="10" fill="var(--muted)">${w}%</text>`;}
+  g+=`<text x="${pl+pw/2}" y="${H-4}" text-anchor="middle" font-size="10" fill="var(--muted)">Moisture Content w (%)</text>`;
+  // ZAV curve
+  const zavPts=[];for(let w=wmin;w<=wmax;w+=0.5){const z=Gs/(1+w*Gs/100);if(z>=ymin&&z<=ymax)zavPts.push(`${xOf(w).toFixed(1)},${yOf(z).toFixed(1)}`);}
+  if(zavPts.length>1)g+=`<polyline fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5 4" points="${zavPts.join(" ")}"/>`;
+  // Compaction curve
+  g+=`<polyline fill="none" stroke="var(--primary)" stroke-width="2.5" points="${pts.map(p=>`${xOf(p.w).toFixed(1)},${yOf(p.rd).toFixed(1)}`).join(" ")}"/>`;
+  pts.forEach(p=>{g+=`<circle cx="${xOf(p.w).toFixed(1)}" cy="${yOf(p.rd).toFixed(1)}" r="4" fill="var(--accent)"/>`;});
+  // Peak crosshair
+  const px=xOf(omc),py=yOf(mdd);
+  g+=`<line x1="${px}" y1="${py}" x2="${px}" y2="${pt+ph}" stroke="var(--ok)" stroke-dasharray="4 3"/><line x1="${pl}" y1="${py}" x2="${px}" y2="${py}" stroke="var(--ok)" stroke-dasharray="4 3"/><circle cx="${px}" cy="${py}" r="5" fill="var(--ok)"/><text x="${Math.min(px+8,pl+pw-115)}" y="${Math.max(py-6,pt+14)}" font-size="11" font-weight="700" fill="var(--ok)">MDD ${mdd.toFixed(2)} @ ${omc.toFixed(1)}%</text>`;
+  document.getElementById("pr_svg").innerHTML=g;
+}
+
+const LS_CHK="cla_chk_v1", LS_FAV="cla_fav_v1", LS_REP="cla_rep_v1", LS_THM="cla_thm_v1";
+let state={cat:-1,q:"",sel:null,tab:"overview",chk:JSON.parse(localStorage.getItem(LS_CHK)||"{}"),fav:JSON.parse(localStorage.getItem(LS_FAV)||"[]"),reps:JSON.parse(localStorage.getItem(LS_REP)||"[]"),lastCalc:{}};
+let tSec=0, tInt=null;
+
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function togTheme(){const d=document.documentElement.getAttribute("data-theme")==="dark";document.documentElement.setAttribute("data-theme",d?"light":"dark");localStorage.setItem(LS_THM,d?"light":"dark");document.getElementById("thb").textContent=d?"🌙 Dark":"☀️ Light";}
+(function(){if(localStorage.getItem(LS_THM)==="dark"){document.documentElement.setAttribute("data-theme","dark");document.getElementById("thb").textContent="☀️ Light";}})();
+
+function toggleSB(){document.getElementById("sb").classList.toggle("open");}
+function togTimer(){if(tInt){clearInterval(tInt);tInt=null;document.getElementById("tb").textContent="Start";}else{tInt=setInterval(()=>{tSec++;updTimer();},1000);document.getElementById("tb").textContent="Pause";}}
+function rstTimer(){if(tInt)togTimer();tSec=0;updTimer();}
+function updTimer(){const m=String(Math.floor(tSec/60)).padStart(2,"0"),s=String(tSec%60).padStart(2,"0");document.getElementById("td").textContent=`${m}:${s}`;}
+
+function renderPills(){
+  document.getElementById("cpills").innerHTML=`<button class="pill ${state.cat===-1?'active':''}" onclick="setCat(-1)">All (93)</button>`+
+    CATS.map((c,i)=>`<button class="pill ${state.cat===i?'active':''}" onclick="setCat(${i})">${c.split(" ")[0]} (${TESTS.filter(t=>t.catIdx===i).length})</button>`).join("");
+  const subs=[...new Set(TESTS.filter(t=>state.cat===-1||t.catIdx===state.cat).map(t=>t.sub))];
+  document.getElementById("ssel").innerHTML=`<option value="">All subcategories (${subs.length})</option>`+subs.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join("");
+}
+function setCat(i){state.cat=i;renderPills();rList();}
+function onSearch(){state.q=document.getElementById("q").value.trim().toLowerCase();document.getElementById("qc").style.display=state.q?"block":"none";rList();}
+function clrSearch(){document.getElementById("q").value="";onSearch();}
+
+function getFiltered(){
+  const sub=document.getElementById("ssel").value, fo=document.getElementById("fonly").checked;
+  return TESTS.filter(t=>{
+    if(state.cat!==-1&&t.catIdx!==state.cat)return false;
+    if(sub&&t.sub!==sub)return false;
+    if(fo&&!state.fav.includes(t.id))return false;
+    if(state.q){
+      const hay=`${t.id} ${t.title} ${t.std} ${t.cat} ${t.sub} ${t.desc} ${t.equip.join(" ")}`.toLowerCase();
+      if(!hay.includes(state.q))return false;
+    }
+    return true;
+  });
+}
+
+function rList(){
+  const list=getFiltered();
+  document.getElementById("lcnt").textContent=`${list.length} of 93 tests`;
+  document.getElementById("tlist").innerHTML=list.map(t=>`
+    <div class="titem ${state.sel===t.id?'active':''}" onclick="selectTest(${t.id})">
+      <div class="tnum">${t.id}</div>
+      <div class="tmeta">
+        <div class="ttitle">${state.fav.includes(t.id)?'★ ':''}${esc(t.title)}</div>
+        <div class="tstd">${esc(t.std)}</div>
+      </div>
+    </div>`).join("")||`<div style="padding:14px;color:var(--muted);font-size:.85rem">No matching tests found.</div>`;
+}
+
+function showHome(){
+  state.sel=null; rList();
+  const counts=CATS.map((c,i)=>({c,i,n:TESTS.filter(t=>t.catIdx===i).length}));
+  document.getElementById("main").innerHTML=`
+    <div class="card">
+      <h1 class="title">Civil Lab Academy — Complete Test Procedures</h1>
+      <p style="color:var(--muted);margin:4px 0 14px">Interactive lab companion for all <strong>93 AASHTO / ASTM / BS / APHA / ISO</strong> civil engineering, geotechnical, chemistry &amp; environmental tests.</p>
+      <div class="dgrid">${counts.map(x=>`<div class="scard" onclick="setCat(${x.i});selectTest(${TESTS.find(t=>t.catIdx===x.i).id})"><div class="sval">${x.n}</div><div class="slbl">${esc(x.c)}</div></div>`).join("")}</div>
+      <div class="sh">Quick Start</div>
+      <ul style="margin:4px 0;padding-left:20px;font-size:.9rem">
+        <li>Click any test in the sidebar or search by number (e.g. <code>92</code>), test name, or standard (<code>ASTM D1557</code>, <code>BS 812</code>, <code>APHA</code>).</li>
+        <li>Use <strong>Procedure</strong> checkboxes to track steps on the bench, and the header <strong>Stopwatch</strong> for timed steps.</li>
+        <li>Open <strong>Calculations</strong> for live test calculators (plus multi-sieve grading curve &amp; Proctor MDD/OMC plotters), then save or print in <strong>Report</strong>.</li>
+      </ul>
+      <div class="disc">For learning &amp; lab guidance. Always follow the current edition of the standard and your project specification.</div>
+    </div>`;
+}
+
+function selectTest(id){
+  state.sel=id;
+  document.getElementById("sb").classList.remove("open");
+  rList();
+  renderTest();
+}
+function setTab(tb){state.tab=tb;renderTest();}
+function togFav(id){
+  const idx=state.fav.indexOf(id);
+  if(idx>=0)state.fav.splice(idx,1);else state.fav.push(id);
+  localStorage.setItem(LS_FAV,JSON.stringify(state.fav));
+  rList();renderTest();
+}
+function togChk(tid,grp,i){
+  const k=`${tid}_${grp}_${i}`;
+  state.chk[k]=!state.chk[k];
+  localStorage.setItem(LS_CHK,JSON.stringify(state.chk));
+  renderTest();
+}
+function clrChk(tid){
+  Object.keys(state.chk).forEach(k=>{if(k.startsWith(`${tid}_`))delete state.chk[k];});
+  localStorage.setItem(LS_CHK,JSON.stringify(state.chk));
+  renderTest();
+}
+function renderChecks(tid,grp,items){
+  return `<ul class="clist">`+items.map((it,i)=>{
+    const d=!!state.chk[`${tid}_${grp}_${i}`];
+    return `<li class="${d?'done':''}"><input type="checkbox" ${d?'checked':''} onchange="togChk(${tid},'${grp}',${i})"/><span>${esc(it)}</span></li>`;
+  }).join("")+`</ul>`;
+}
+
+function renderTest(){
+  const t=TESTS.find(x=>x.id===state.sel); if(!t)return;
+  const fav=state.fav.includes(t.id);
+  const doneSteps=t.steps.filter((_,i)=>state.chk[`${t.id}_s_${i}`]).length;
+  const pct=Math.round(doneSteps/t.steps.length*100);
+  let body="";
+
+  if(state.tab==="overview"){
+    body=`
+      <div class="sbox">${getSVG(t)}</div>
+      <div class="sh">What it determines</div>
+      <p style="margin:4px 0 10px">${esc(t.desc)}</p>
+      <div class="sh">Equipment (${t.equip.length})</div>
+      ${renderChecks(t.id,'e',t.equip)}
+      <div class="sh">Sample &amp; Preparation</div>
+      ${renderChecks(t.id,'p',t.prep)}
+      <div class="sh">Precautions &amp; Common Mistakes</div>
+      <div class="wbox"><ul>${t.prec.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`;
+  } else if(state.tab==="procedure"){
+    body=`
+      <div class="sh"><span>Step-by-Step Procedure (${doneSteps}/${t.steps.length} done)</span><button class="btn" onclick="clrChk(${t.id})">Reset checks</button></div>
+      <div class="pbar"><div class="pfill" style="width:${pct}%"></div></div>
+      ${renderChecks(t.id,'s',t.steps.map((s,i)=>`${i+1}. ${s}`))}
+      <div class="sh">Precautions</div>
+      <div class="wbox"><ul>${t.prec.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`;
+  } else if(state.tab==="calc"){
+    const c=CALCS[t.cid];
+    let extra="";
+    if(t.id===1||t.id===26||t.id===40) extra=renderSievePlotter(t.id);
+    if(t.id===92||t.id===93) extra=renderProctorPlotter(t.id);
+    body=`
+      <div class="sh">Standard Formula</div>
+      <div class="fcode">${esc(t.formula)}</div>
+      ${extra}
+      <div class="ccard">
+        <div style="font-weight:700;margin-bottom:8px">Calculator — ${esc(c[0])}</div>
+        <div class="cgrid">${c[1].map(f=>`<div class="fld"><label>${esc(f[1])}</label><input id="ci_${f[0]}" type="${typeof f[2]==='string'?'text':'number'}" step="any" value="${esc(f[2])}" oninput="runCalc(${t.id})"/></div>`).join("")}</div>
+        <div class="cres" id="cres"></div>
+      </div>`;
+  } else if(state.tab==="report"){
+    const prev=state.lastCalc[t.id]||"";
+    body=`
+      <div class="sh">What to Report Checklist</div>
+      ${renderChecks(t.id,'r',t.report)}
+      <div class="sh">Lab Test Report Form</div>
+      <div class="cgrid">
+        <div class="fld"><label>Project Name</label><input id="rp_proj" placeholder="e.g. NHA Highway Package-II"/></div>
+        <div class="fld"><label>Sample ID / Borehole</label><input id="rp_sid" placeholder="e.g. BH-04 / Stockpile A"/></div>
+        <div class="fld"><label>Location / Chainage / Depth</label><input id="rp_loc" placeholder="e.g. Km 14+200, Subbase"/></div>
+        <div class="fld"><label>Operator</label><input id="rp_op" placeholder="Lab Technician"/></div>
+        <div class="fld"><label>Test Date</label><input id="rp_dt" type="date" value="${new Date().toISOString().slice(0,10)}"/></div>
+        <div class="fld"><label>Computed / Measured Result</label><input id="rp_res" value="${esc(prev)}" placeholder="Run Calculator tab or enter result"/></div>
+      </div>
+      <div class="fld" style="margin-top:8px"><label>Observations / Deviations</label><textarea id="rp_obs" rows="3" placeholder="Condition, failures, deviations from standard..."></textarea></div>
+      <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap" class="np">
+        <button class="btn pri" onclick="saveRep(${t.id})">💾 Save Report</button>
+        <button class="btn" onclick="window.print()">🖨 Print / Save PDF</button>
+      </div>`;
+  }
+
+  document.getElementById("main").innerHTML=`
+    <div class="card">
+      <div class="bc">${esc(t.cat)} › ${esc(t.sub)} · Test #${t.id}</div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap">
+        <h1 class="title">${t.id}. ${esc(t.title)}</h1>
+        <button class="btn np" onclick="togFav(${t.id})">${fav?'★ Favorited':'☆ Favorite'}</button>
+      </div>
+      <div class="tags"><span class="stag">${esc(t.std)}</span></div>
+      <div class="tabs np">
+        <button class="tab ${state.tab==='overview'?'active':''}" onclick="setTab('overview')">Overview &amp; Prep</button>
+        <button class="tab ${state.tab==='procedure'?'active':''}" onclick="setTab('procedure')">Procedure (${doneSteps}/${t.steps.length})</button>
+        <button class="tab ${state.tab==='calc'?'active':''}" onclick="setTab('calc')">Calculations</button>
+        <button class="tab ${state.tab==='report'?'active':''}" onclick="setTab('report')">Report &amp; Print</button>
+      </div>
+      ${body}
+      <div class="disc">For learning &amp; reference. Always follow the current standard edition and project specification.</div>
+    </div>`;
+  if(state.tab==="calc"){
+    runCalc(t.id);
+    if(t.id===1||t.id===26||t.id===40)updSieve(t.id);
+    if(t.id===92||t.id===93)updProctor(t.id);
+  }
+}
+
+function runCalc(tid){
+  const t=TESTS.find(x=>x.id===tid), c=CALCS[t.cid], v={};
+  c[1].forEach(f=>{const raw=document.getElementById("ci_"+f[0]).value;v[f[0]]=typeof f[2]==="string"?raw:parseFloat(raw);});
+  let out="";
+  try{out=c[2](v);}catch(e){out="Check input values.";}
+  if(out.includes("NaN")||out.includes("Infinity"))out="Enter valid non-zero values.";
+  document.getElementById("cres").textContent=out;
+  if(!((tid===1||tid===26||tid===40||tid===92||tid===93)&&state.lastCalc[tid]))state.lastCalc[tid]=out;
+}
+
+function saveRep(tid){
+  const t=TESTS.find(x=>x.id===tid);
+  const rec={
+    testId:t.id, test:t.title, std:t.std,
+    proj:document.getElementById("rp_proj").value,
+    sid:document.getElementById("rp_sid").value,
+    loc:document.getElementById("rp_loc").value,
+    op:document.getElementById("rp_op").value,
+    dt:document.getElementById("rp_dt").value,
+    res:document.getElementById("rp_res").value,
+    obs:document.getElementById("rp_obs").value,
+    savedAt:new Date().toLocaleString()
+  };
+  state.reps.unshift(rec);
+  localStorage.setItem(LS_REP,JSON.stringify(state.reps));
+  updSavedCnt();
+  alert("Report saved! View it anytime under 'Saved' in the top bar.");
+}
+function updSavedCnt(){document.getElementById("scnt").textContent=state.reps.length;}
+
+function showSaved(){
+  state.sel=null; rList();
+  document.getElementById("main").innerHTML=`
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <h1 class="title">Saved Lab Reports (${state.reps.length})</h1>
+        <div style="display:flex;gap:8px" class="np">
+          <button class="btn" onclick="exportReps()">⬇ Export JSON</button>
+          <button class="btn" onclick="window.print()">🖨 Print</button>
+          <button class="btn" onclick="showHome()">← Back</button>
+        </div>
+      </div>
+      ${state.reps.length?state.reps.map((r,i)=>`
+        <div class="ccard">
+          <div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap">
+            <strong>#${r.testId} ${esc(r.test)} <span style="color:var(--muted);font-weight:400">(${esc(r.std)})</span></strong>
+            <button class="btn np" onclick="delRep(${i})">Delete</button>
+          </div>
+          <div style="font-size:.84rem;color:var(--muted);margin:4px 0">Project: ${esc(r.proj||'-')} · Sample: ${esc(r.sid||'-')} · Loc: ${esc(r.loc||'-')} · Date: ${esc(r.dt||'-')} · Op: ${esc(r.op||'-')}</div>
+          <div style="font-weight:600;color:var(--primary)">Result: ${esc(r.res||'-')}</div>
+          ${r.obs?`<div style="font-size:.84rem;margin-top:3px">Notes: ${esc(r.obs)}</div>`:''}
+        </div>`).join(""):`<p style="color:var(--muted)">No saved reports yet. Open any test → Report &amp; Print tab to save one.</p>`}
+    </div>`;
+}
+function delRep(i){state.reps.splice(i,1);localStorage.setItem(LS_REP,JSON.stringify(state.reps));updSavedCnt();showSaved();}
+function exportReps(){
+  const b=new Blob([JSON.stringify(state.reps,null,2)],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="civil-lab-reports.json";a.click();
+}
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="/"&&document.activeElement.tagName!=="INPUT"&&document.activeElement.tagName!=="TEXTAREA"){e.preventDefault();document.getElementById("q").focus();}
+  if(e.key==="Escape")document.getElementById("sb").classList.remove("open");
+});
+
+renderPills(); rList(); updSavedCnt(); showHome();
+</script>
+</body>
+</html>
